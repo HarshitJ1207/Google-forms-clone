@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid gray;
+            width: 20rem;
+            padding: 1rem;
+            margin: 1rem;
+        }
+        #form-builder-panel{
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 20rem;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div id = 'form-builder-panel'>
+        <button id = 'button1'>Add Text Field</button>
+        <button id = 'button2'>Add DropDown Field</button>
+        <button id = 'button3'>Add Checkbox Field</button>
+    </div>
+</body>
+
+<script>
+    class FormBuilder {
+        addTextField(placeholder) {
+            /* abstract */
+        }
+        addDropdownField(placeholder, options) {
+            /* abstract */
+        }
+        addCheckboxField(placeholder) {
+            /* abstract */
+        }
+        getForm() {
+            /* abstract */
+        }
+    }
+
+    class ConcreteFormBuilder extends FormBuilder {
+        constructor() {
+            super()
+            this.form = new Form()
+        }
+
+        addTextField(placeholder) {
+            this.form.addField({ type: "input", placeholder })
+            return this
+        }
+
+        addDropdownField(placeholder, options) {
+            this.form.addField({ type: "select", placeholder, options })
+            return this
+        }
+
+        addCheckboxField(placeholder) {
+            this.form.addField({
+                type: "input",
+                placeholder,
+                inputType: "checkbox",
+            })
+            return this
+        }
+
+        getForm() {
+            return this.form
+        }
+    }
+
+    class Form {
+        constructor() {
+            this.fields = []
+        }
+
+        addField(field) {
+            this.fields.push(field)
+        }
+
+        render(element = undefined) {
+            const formElement = document.createElement("form")
+            this.fields.forEach((field) => {
+                let fieldElement
+
+                if (field.type === "select") {
+                    fieldElement = document.createElement("select")
+                    field.options.forEach((option) => {
+                        const optionElement = document.createElement("option")
+                        optionElement.value = option
+                        optionElement.text = option
+                        fieldElement.appendChild(optionElement)
+                    })
+                } else if (field.inputType === "checkbox") {
+                    // Create label element to wrap the checkbox and display the text
+                    const labelElement = document.createElement("label")
+                    fieldElement = document.createElement("input")
+                    fieldElement.type = "checkbox"
+                    labelElement.appendChild(fieldElement)
+                    labelElement.appendChild(
+                        document.createTextNode(` ${field.placeholder}`),
+                    )
+                    formElement.appendChild(labelElement)
+                } else {
+                    fieldElement = document.createElement("input")
+                    fieldElement.type = field.inputType || "text"
+                    fieldElement.placeholder = field.placeholder
+                    formElement.appendChild(fieldElement)
+                }
+
+                if (field.inputType !== "checkbox") {
+                    formElement.appendChild(fieldElement)
+                }
+            })
+            if(element) element.innerHTML = '';
+            element ? element.append(formElement) : document.body.appendChild(formElement);
+        }
+    }
+
+    // Use the ConcreteFormBuilder to construct the form
+    const formBuilder = new ConcreteFormBuilder();
+    const loginFormBuilder = new ConcreteFormBuilder();
+    const dynamicFormBuilder = new ConcreteFormBuilder();
+
+
+    formBuilder
+        .addTextField("Name")
+        .addTextField("Email")
+        .addDropdownField("Country", ["USA", "Canada", "UK"])
+        .addCheckboxField("Subscribe to newsletter")
+        .addTextField("Country")
+        .getForm()
+        .render();
+    const div = document.createElement('div');
+    document.body.append(div);
+    div.style.backgroundColor = 'aliceblue';
+    const div1 = document.createElement('div');
+    document.body.append(div1);
+    div1.style.backgroundColor = 'lightyellow';
+    loginFormBuilder
+        .addTextField("Name")
+        .addTextField("Email")
+        .addDropdownField("Country", ["USA", "Canada", "UK"])
+        .addCheckboxField("Subscribe to newsletter")
+        .addTextField("Country")
+        .getForm()
+        .render(div);
+
+
+    const button1 = document.querySelector('#button1');
+    const button2 = document.querySelector('#button2');
+    const button3 = document.querySelector('#button3');
+
+    button1.addEventListener('click' , () => {
+        dynamicFormBuilder
+            .addTextField("New Text Field")
+            .getForm()
+            .render(div1);
+    })
+    button2.addEventListener('click' , () => {
+        dynamicFormBuilder
+            .addDropdownField("New dropdown", ["option1", "optin2", "option3"])
+            .getForm()
+            .render(div1);
+    })
+    button3.addEventListener('click' , () => {
+        dynamicFormBuilder
+            .addCheckboxField("New Checkbox")
+            .getForm()
+            .render(div1);
+    })
+
+
+</script>
+
+</html>

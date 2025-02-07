@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB Image Storage</title>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*">
+    <div id="imageContainer"></div>
+    
+    <script>
+        const dbName = 'form-images';
+        const objectStoreName = 'question-images';
+
+        let db;
+        const request = window.indexedDB.open(dbName);
+        request.onerror = (event) => {
+            console.log('error opening database');
+        }
+        request.onsuccess = (event) => {
+            db = event.target.result;
+            loadImageFromDB();
+            document.getElementById("imageInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                saveImageToDB(file);
+            }
+        });
+        }
+        request.onupgradeneeded = (event) => {
+            event.target.result.createObjectStore(objectStoreName, { autoIncrement: true });
+        };
+
+        async function saveImageToDB(imageFile) {
+            const transaction = db.transaction(objectStoreName, "readwrite");
+            const store = transaction.objectStore(objectStoreName);
+            store.put({data: imageFile }).onsuccess = (event) => console.log(event.target.result);
+        }
+
+        async function loadImageFromDB(imageId = 1) {
+            const transaction = db.transaction(objectStoreName);
+            const store = transaction.objectStore(objectStoreName);
+            const request = store.get(imageId);
+            request.onsuccess = () => {
+                if (request.result) {
+                    displayImage(request.result.data);
+                }
+            };
+        }
+        function displayImage(imageFile) {
+            const imageContainer = document.getElementById("imageContainer");
+            imageContainer.innerHTML = "";
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(imageFile);
+            img.style.maxWidth = "100%";
+            imageContainer.appendChild(img);
+        }
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                displayImage(file);
+            }
+        });
+    </script>
+</body>
+</html>

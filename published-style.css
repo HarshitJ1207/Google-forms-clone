@@ -1,0 +1,153 @@
+*{
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+body{
+    background-color: rgb(240, 235, 248);
+    margin: 0;
+    min-width: 44rem;
+}
+
+.form-questionnaire-area{
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0 4rem 0;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.form-questionnaire-tab{
+    background-color: white;
+    width: 100%;
+    max-width: 48rem;
+    min-width: 37.5rem;
+    padding: 1.25rem 1.25rem;
+    border-radius: 0.5rem;
+    border-left: 0.25rem solid rgb(26, 115, 232);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-title-tab{
+    background-color: white;
+    width: 100%;
+    max-width: 48rem;
+    min-width: 37.5rem;
+    padding: 1.25rem 0;
+    border-radius: 0.5rem;
+    border-left: 0.25rem solid rgb(26, 115, 232);
+    border-top: 0.75rem solid rgb(103,58,153);
+    gap: 1.5rem;
+}
+
+.form-title{
+    margin: 0 1.25rem;
+    font-size: 2rem;
+}
+.form-description{
+    margin: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+}
+.form-disclaimer{
+    margin: 0.8rem 1.25rem 0;
+    font-size: 0.9rem;
+    color: gray;
+}
+.question-statement{
+    margin: 0.4rem 0 0 0;
+}
+.form-questionnaire-short-answer-bar,
+.form-questionnaire-long-answer-bar{
+    border: 0;
+    margin: 0;
+    outline: 0;
+    border-bottom: 1px solid rgb(214, 214, 214);
+    width: 21rem;
+}
+
+.form-questionnaire-long-answer-bar{
+    width: 32rem;
+}
+
+.form-questionnaire-short-answer-bar:focus {
+    border-bottom: 0.15rem solid rgb(103,58,153);
+}
+
+.form-questionnaire-option-container{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* .form-questionnaire-option-label{
+
+} */
+
+.clear-selection-button{
+    margin-left: auto;
+    color: gray;
+    background-color: inherit;
+    border: 0;
+    outline: 0;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.form-questionnaire-dropdown{
+    width: 10rem;
+    margin-right: auto;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(214, 214, 214);
+}
+
+.form-questionnaire-input-date{
+    width: 7rem;
+    border: 0;
+    border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.form-questionnaire-add-file-button{
+    color: rgb(26, 115, 232);
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    background-color: inherit;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(214, 214, 214);
+    gap:0.3rem;
+}
+
+.form-questionnaire-rating-container{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    align-items: center;
+}
+
+.form-questionnaire-rating-inner-contianer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.form-questionnaire-multiple-choice-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap:1rem;
+    justify-items: center;
+}
+
+.row-label{
+    justify-self: start;
+}
