@@ -26,7 +26,7 @@ body{
 }
 
 .navbar{
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     background-color: white;
@@ -53,9 +53,10 @@ body{
 .navbar-upper__icon{
     padding: 0.5rem;
     transition: background-color 0.2s;
+    border-radius: 100rem;
+    cursor: pointer;
 }
 .navbar-upper__icon:hover{
-    border-radius: 100rem;
     background-color: rgb(240, 240, 240);
 }
 

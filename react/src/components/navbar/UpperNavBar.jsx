@@ -1,10 +1,11 @@
 import formIcon from '/forms-icon.svg';
+import Dropdown from '../dropdown/Dropdown';
 
 function UpperLeftNavBar() {
     return (
         <div className="navbar-upper__left">
             <img src={formIcon} className="google-forms-icon" />
-            <input type="text" className="form-name-textbox" value="Untitled Form" />
+            <input type="text" className="form-name-textbox" defaultValue="Untitled Form" />
             <span className="material-symbols-outlined navbar-upper__icon">folder</span>
             <span className="material-symbols-outlined navbar-upper__icon">star</span>
         </div>
@@ -12,6 +13,15 @@ function UpperLeftNavBar() {
 }
 
 function UpperRightNavBar() {
+    const props = {
+        trigger: <span className="material-symbols-outlined navbar-upper__icon">more_vert</span>,
+        alignRight: true,
+        itemList: [
+            <><span className="material-symbols-outlined">content_copy</span><p>Make a copy</p></>,
+            <><span className="material-symbols-outlined">delete</span><p>Move to thrash</p></>,
+            <><span className="material-symbols-outlined">extension</span><p>Get Add ons</p></>,
+        ]
+    }
     return (
         <div className="navbar-upper__right">
             <span className="material-symbols-outlined navbar-upper__icon">palette</span>
@@ -21,7 +31,7 @@ function UpperRightNavBar() {
             <span className="material-symbols-outlined navbar-upper__icon">link</span>
             <span className="material-symbols-outlined navbar-upper__icon">person_add</span>
             <button className="publish-button">Publish</button>
-            <span className="material-symbols-outlined navbar-upper__icon">more_vert</span>
+            <Dropdown {...props}/>
             <span className="material-symbols-outlined navbar-upper__icon">account_circle</span>
         </div>
     );
