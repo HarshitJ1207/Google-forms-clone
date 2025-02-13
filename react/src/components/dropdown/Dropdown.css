@@ -42,3 +42,7 @@
 .dropdown__item:hover {
     background: #f0f0f0;
 }
+
+.dropdown__item--selected{
+    background-color: rgb(227, 244, 254);
+}
