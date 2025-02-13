@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, cloneElement } from "react";
+import { useState, useRef, useEffect} from "react";
 import "./Dropdown.css";
 
 function Dropdown({ trigger, itemList, alignRight = false, fillContent = false, manageState = false}) {

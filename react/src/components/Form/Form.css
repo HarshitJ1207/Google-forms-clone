@@ -69,12 +69,15 @@
 }
 
 .tab__type-dropdown{
+    position: relative;
     min-width: max-content;
+    width: 13rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    justify-content: start;
     border: 0.1rem solid lightgray;
-    padding: 0.1rem 1.25rem;
+    padding: 0.1rem 3rem 0.1rem 1rem;
     border-radius: 0.25rem;
     font-size: 0.9rem;
 }
@@ -82,7 +85,8 @@
 .tab__type-dropdown::after{
     content: '▼';
     color: gray;
-    margin-left: 1rem;
+    position: absolute;
+    right: 1rem;
 }
 
 .tab-footer{
@@ -100,4 +104,8 @@
     margin: 0;
     border-style: solid;
     border-color: lightgray;
+}
+
+.tab-footer__required-label{
+    font-size: 0.9rem;
 }
