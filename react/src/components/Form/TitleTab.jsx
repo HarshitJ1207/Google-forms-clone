@@ -15,7 +15,6 @@ export default function TitleTab() {
                 />
                 {focusedField === "title" && <TextToolBar />}
             </div>
-
             <div className="tab__textbox-container">
                 <input 
                     className="tab__description-bar" 

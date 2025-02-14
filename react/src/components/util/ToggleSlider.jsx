@@ -11,7 +11,7 @@ export default function ToggleSlider({ height = 5 }) {
         borderRadius: `${height / 2}rem`,
         background: isActive ? "var(--background-color)" : "#ccc",
         cursor: "pointer",
-        transition: "background 0.3s ease-in-out",
+        transition: "background 0.2s ease-in-out",
     };
 
     const sliderStyles = {

@@ -1,7 +1,6 @@
 import './App.css'
 import NavBar from './components/navbar/NavBar';
 import Form from './components/Form/Form'
-
 function App() {
 	return (
 		<>
