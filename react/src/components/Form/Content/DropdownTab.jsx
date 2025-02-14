@@ -7,8 +7,6 @@ export default function MultipleChoice() {
         ]
     );
 
-    const [addedOther, setAddedOther] = useState(false);
-
     const addOption = () => {
         setOptions(prevOptions => [...prevOptions, `Option ${prevOptions.length + 1}`])
     }
@@ -24,7 +22,7 @@ export default function MultipleChoice() {
     const renderOption = (option, index) => {
         return (
             <div className="option-container" key={index}>
-                <span className="material-symbols-outlined">radio_button_unchecked</span>
+                <span className="option-container__dropdown-option-number">{`${index+1}.`}</span>
                 <input
                     type="text"
                     className="option-container__option-bar"
@@ -37,43 +35,19 @@ export default function MultipleChoice() {
                         });
                     }}
                     />
-
-                <span className="material-symbols-outlined option-container__image-icon">
-                    image
-                </span>
                 <span className="material-symbols-outlined" style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} onClick={() => deleteOption(index)}>close</span>
             </div>
         );
     }
     const renderAddOption = () => {
-        if(!addedOther){
-            return (
-                <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
-                    <div className="add-option-container">
-                        <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
-                        or
-                        <span className="add-option-container__add-other" onClick={() => setAddedOther(true)}>add "Other"</span>
-                    </div>
+        return <>
+            <div className="option-container" key={options.length}>
+            <span className="option-container__dropdown-option-number">{`${options.length+1}.`}</span>
+                <div className="add-option-container">
+                    <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
                 </div>
-            );
-        }
-        else {
-            return <>
-                <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
-                    <span className="option-container__other-option">Other...</span>
-                    <span className="material-symbols-outlined" onClick={() => deleteOption(-1)}>close</span>
-                </div>
-                <div className="option-container" key={options.length+1}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
-                    <div className="add-option-container">
-                        <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
-                    </div>
-                </div>
-            </>
-
-        }
+            </div>
+        </>
     }
 
     const renderOptions = () => {

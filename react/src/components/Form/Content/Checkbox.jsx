@@ -24,7 +24,7 @@ export default function MultipleChoice() {
     const renderOption = (option, index) => {
         return (
             <div className="option-container" key={index}>
-                <span className="material-symbols-outlined">radio_button_unchecked</span>
+                <span className="material-symbols-outlined">check_box_outline_blank</span>
                 <input
                     type="text"
                     className="option-container__option-bar"
@@ -49,7 +49,7 @@ export default function MultipleChoice() {
         if(!addedOther){
             return (
                 <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
+                    <span className="material-symbols-outlined">check_box_outline_blank</span>
                     <div className="add-option-container">
                         <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
                         or
@@ -61,12 +61,12 @@ export default function MultipleChoice() {
         else {
             return <>
                 <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
+                    <span className="material-symbols-outlined">check_box_outline_blank</span>
                     <span className="option-container__other-option">Other...</span>
                     <span className="material-symbols-outlined" onClick={() => deleteOption(-1)}>close</span>
                 </div>
                 <div className="option-container" key={options.length+1}>
-                    <span className="material-symbols-outlined">radio_button_unchecked</span>
+                    <span className="material-symbols-outlined">check_box_outline_blank</span>
                     <div className="add-option-container">
                         <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
                     </div>

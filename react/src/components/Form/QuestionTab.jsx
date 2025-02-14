@@ -1,13 +1,13 @@
 import './Content/Content.css'
 import Header from "./Header";
 import Footer from "./Footer";
-import MultipleChoice from "./Content/MultipleChoice";
+import DropdownTab from "./Content/DropdownTab"
 
 export default function QuestionTab(){
     return(
         <div className="form-tab">
             <Header/>
-            <MultipleChoice />
+            <DropdownTab />
             <Footer/>
         </div>
     );
