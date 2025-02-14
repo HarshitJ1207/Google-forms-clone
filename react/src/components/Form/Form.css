@@ -68,7 +68,8 @@
     width: 100%;
 }
 
-.tab__type-dropdown{
+.tab__type-dropdown,
+.tab__rating-dropdown{
     position: relative;
     min-width: max-content;
     width: 13rem;
@@ -81,8 +82,18 @@
     border-radius: 0.25rem;
     font-size: 0.9rem;
 }
+.tab__rating-dropdown{
+    width: 4rem;
+    height: 100%;
+}
 
-.tab__type-dropdown::after{
+.rating-tab-dropdown-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.tab__type-dropdown::after,
+.tab__rating-dropdown::after{
     content: '▼';
     color: gray;
     position: absolute;

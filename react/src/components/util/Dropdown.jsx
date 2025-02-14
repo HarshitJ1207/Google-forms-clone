@@ -1,14 +1,13 @@
 import { useState, useRef, useEffect} from "react";
 import "./Dropdown.css";
 
-function Dropdown({ trigger, itemList, alignRight = false, fillContent = false, manageState = false}) {
+function Dropdown({ trigger, itemList, alignRight = false, fillContent = false, manageState = false, initialState = 0, state = undefined}) {
     if(fillContent && !manageState) {
         throw(new Error('invalid config'));
     }
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
-    const [selectedIndex, setSelectedIndex] = useState(manageState ? 0 : -1);
-    
+    const [selectedIndex, setSelectedIndex] = useState(manageState ? initialState : -1);
     // Close dropdown when clicking outside
     useEffect(() => {
         function handleClickOutside(event) {
@@ -34,7 +33,10 @@ function Dropdown({ trigger, itemList, alignRight = false, fillContent = false, 
                             key={index} 
                             className={`dropdown__item ${(index == selectedIndex && manageState) ? "dropdown__item--selected" : ""}`}
                             onClick={() => {
-                                if(manageState) setSelectedIndex(index);
+                                if(manageState){
+                                    setSelectedIndex(index);
+                                    if(state) state.setValue(index);
+                                } 
                                 setOpen(false);
                             }}
                         >
