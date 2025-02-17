@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dropdown from "./../util/Dropdown"
 import TextToolBar from "./../util/TextToolBar"
 
-export default function Header(){
+export default function Header({state}){
     const [focusedField, setFocusedField] = useState(false);
     const props = {
         trigger: (children) => <div className = 'tab__type-dropdown'>{children}</div>,
@@ -23,6 +23,7 @@ export default function Header(){
         ],
         fillContent: true,
         manageState: true,
+        state: state
     }
     return (
         <div className="tab-header">
