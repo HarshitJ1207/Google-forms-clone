@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import './Select.css';
 import Button from './Button';
+import MaterialIcon from './MaterialIcon';
 
 export default function Select({
     children = [],
@@ -51,12 +52,18 @@ export default function Select({
         trigger = node;
     } else if (stateManagement === 'display') {
         trigger = (
-            <Button className="trigger-button">
+            <Button className={`trigger-button ${className}`.trim()}>
                 {selectedIndex >= 0 ? children[selectedIndex] : placeholder}
+                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
             </Button>
         );
     } else {
-        trigger = <Button className="trigger-button">{placeholder}</Button>;
+        trigger = (
+            <Button className={`trigger-button ${className}`.trim()}>
+                {placeholder}
+                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
+            </Button>
+        );
     }
 
     const getOptionProps = (ix) => ({
@@ -68,7 +75,7 @@ export default function Select({
     });
 
     return (
-        <div className={`dropdown ${className}`.trim()} ref={dropdownRef} style={style}>
+        <div className={`dropdown`.trim()} ref={dropdownRef} style={style}>
             <div onClick={() => setOpen(!open)} {...handlers} className="trigger">
                 {trigger}
             </div>

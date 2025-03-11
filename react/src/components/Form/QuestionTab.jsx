@@ -3,7 +3,6 @@ import Footer from './Footer.jsx';
 
 import { useState } from 'react';
 
-import './Content/Content.css'
 import RatingTab from './Content/RatingTab';
 import ShortAnswer from './Content/ShortAnswer';
 import Paragraph from './Content/Paragraph';
@@ -12,6 +11,8 @@ import DropdownTab from "./Content/DropdownTab";
 import Checkbox from "./Content/Checkbox";
 import TimeTab from "./Content/TimeTab";
 import DateTab from "./Content/DateTab.jsx";
+import LinearScaleTab from "./Content/LinearScale.jsx";
+import MultipleChoiceGrid from './Content/MultipleChoiceGrid';
 
 export default function QuestionTab(){
     const [tabType, setTabType] = useState(0);
@@ -27,8 +28,12 @@ export default function QuestionTab(){
                 return <Checkbox />;
             case 4:
                 return <DropdownTab />;
+            case 6:
+                return <LinearScaleTab />;
             case 7:
                 return <RatingTab />;
+            case 8:
+                return <MultipleChoiceGrid />;
             case 10:
                 return <DateTab />;
             case 11:

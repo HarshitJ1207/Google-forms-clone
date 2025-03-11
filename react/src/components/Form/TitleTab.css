@@ -1,11 +1,11 @@
 .tab__title-bar{
     width: 100%;
-    border-bottom: 0.1rem solid lightgray;
+    border-bottom: 0.1rem solid var(--border-gray);
 }
 
 .tab__description-bar{
     width: 100%;
-    border-bottom: 0.1rem solid lightgray;
+    border-bottom: 0.1rem solid var(--border-gray);
 }
 
 .tab__title-bar:focus,

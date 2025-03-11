@@ -25,7 +25,6 @@
     display: flex;
     color: black;
     padding: 0.25rem;
-    padding-right: 2.5rem;
     height: 100%;
     background-color: white;
     align-items: center;
@@ -33,13 +32,9 @@
     border: 0.1rem solid var(--border-gray);
 }
 
-.trigger-button::after{
-    content: '▼';
-    color: var(--font-gray);
-    position: absolute;
-    right: 1rem;
+.dropdown-arrow{
+    float: right;
 }
-
 .dropdown-menu{
     width: max-content;
     background-color: white;
