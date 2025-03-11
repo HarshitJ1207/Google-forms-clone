@@ -1,0 +1,14 @@
+.navbar-lower__button{
+    border: none;
+    border-radius: 0;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    color: var(--font-gray);
+    background-color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.navbar-lower__button--selected{
+    border-bottom: 0.2rem solid var(--primary-color);
+    color: var(--primary-color);
+}

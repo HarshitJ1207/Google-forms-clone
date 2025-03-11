@@ -1,0 +1,43 @@
+.favorite-icon,
+.thumb_up-icon{
+    padding: 0.5rem 0;
+}
+
+.grade-icon{
+    color: rgb(248, 194, 58);
+}
+.favorite-icon{
+    color: red;
+}
+.thumb_up-icon{
+    color: rgb(65, 65, 220);
+}
+
+.rating-tab__dropdown-item{
+    padding: 0.5rem;
+    margin: 0;
+    min-width: 3rem;
+    text-align: center;
+}
+.linear-scale-tab__dropdown-item{
+    padding: 0.5rem;
+    margin: 0;
+    min-width: 4rem;
+}
+
+.linear-scale-tab__dropdown{
+    border: none;
+}
+
+.linear-scale-tab__label-bar{
+    border-bottom: 0.1rem solid var(--border-gray);
+    font-size: 0.9rem;
+}
+
+.linear-scale-tab__label-bar:focus {
+    border-bottom: 0.15rem solid var(--primary-color);
+}  
+
+.linear-scale-tab__label-span{
+    min-width: 2rem;
+}

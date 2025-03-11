@@ -1,0 +1,14 @@
+.date-tab-container,
+.time-tab-container{
+    border-bottom: 0.1rem solid lightgray;
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+.tab-content__date-bar,
+.tab-content__time-bar{
+    width: 10rem;
+    color: var(--font-gray);
+    font-size: 0.9rem;
+    margin: 0;
+}
+

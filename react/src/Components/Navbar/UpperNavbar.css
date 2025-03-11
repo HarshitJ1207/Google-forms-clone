@@ -1,0 +1,19 @@
+.google-forms-icon{
+    height: 2rem;
+    padding: 0;
+}
+
+.navbar__form-name-input{
+    border: none;
+    outline: none;
+    height: 1.75rem;
+    max-width: 11rem;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: border 0.2s;
+}
+
+.navbar__form-name-input:focus{
+    border-bottom: 0.15rem solid black; 
+}
+

@@ -1,0 +1,46 @@
+.option-container__option-bar{
+    width: 100%;
+    font-size: 0.9rem;
+}
+.option-container__option-bar:hover {
+    border-bottom: 0.1rem solid var(--border-gray);
+}   
+.option-container__option-bar:focus {
+    outline: 0;
+    border-bottom: 0.15rem solid var(--primary-color);
+}   
+.option-container__option-bar:focus + span{
+    visibility: visible;
+}   
+
+.add-option-container__add-option{
+    color: var(--font-gray);
+    margin-right: 0.5rem;
+}
+.add-option-container__add-other{
+    color: var(--secondary-color);
+    padding: 0.5rem;
+}
+.option-container:hover .add-option-container__add-option{
+    border-bottom: 0.1rem solid lightgray;  
+}
+.add-option-container__add-other:hover{
+    background-color: rgb(247, 253, 255);
+    border-radius: 0.3rem;
+}
+
+
+.option-container__image-icon{
+    visibility: hidden;
+}
+.option-container:hover .option-container__image-icon{
+    visibility: visible;
+}
+
+.option-container__other-option{
+    color: var(--font-gray);
+    width: 100%;
+}
+.option-container__other-option:hover{
+    border-bottom: 0.1rem dotted gray;
+}
