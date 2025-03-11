@@ -22,8 +22,7 @@
 .linear-scale-tab__dropdown-item{
     padding: 0.5rem;
     margin: 0;
-    min-width: 2rem;
-    text-align: center;
+    min-width: 4rem;
 }
 
 .linear-scale-tab__dropdown{

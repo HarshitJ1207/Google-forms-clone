@@ -28,7 +28,7 @@ function UpperLeftNavbar(){
         className: 'icon-button'
     }
     return (
-        <FlexBox gap = '0.5rem'>
+        <FlexBox>
             <img className = 'google-forms-icon' src = {formIcon}/>
             <Input {...formNameInputProps} />
             <MaterialIcon {...materialIconOutlinedProps} name = 'folder' />
@@ -38,8 +38,16 @@ function UpperLeftNavbar(){
 }
 
 function UpperRightNavbar() {
+    const materialIconOutlinedProps = {
+        className: 'icon-button'
+    }
+    const publishButtonProps = {
+        options: {
+            variant: 'primary'
+        },
+    }
     const props = {
-        node: <span className="material-symbols-outlined navbar-upper__icon">more_vert</span>,
+        node: <MaterialIcon {...materialIconOutlinedProps} name = 'more_vert'/>,
         options: {
             align: 'right',
             stateManagement: 'none'
@@ -49,16 +57,8 @@ function UpperRightNavbar() {
         },
         className: 'icon-button'
     }
-    const materialIconOutlinedProps = {
-        className: 'icon-button'
-    }
-    const publishButtonProps = {
-        options: {
-            variant: 'primary'
-        },
-    }
     return (
-        <FlexBox gap = '0.5rem'>
+        <FlexBox>
             <MaterialIcon {...materialIconOutlinedProps} name = 'palette' />
             <MaterialIcon {...materialIconOutlinedProps} name = 'visibility' />
             <MaterialIcon {...materialIconOutlinedProps} name = 'undo' />

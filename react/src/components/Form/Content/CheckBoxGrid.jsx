@@ -4,11 +4,10 @@ import MaterialIcon  from '../../Elements/MaterialIcon';
 import Input from '../../Elements/Input';
 import './MultipleChoiceGrid.css';
 import './MultipleChoice.css';
-export default function MultipleChoiceGrid() {
+export default function CheckboxGrid() {
     const [rows, setRows] = useState(['Row 1']);
     const [columns, setColumns] = useState(['Column 1']);
-
-
+    
     const renderOption = (option, index, type) => {
         const options = type === 'rows' ? rows: columns;
         const inputProps = {
@@ -42,7 +41,7 @@ export default function MultipleChoiceGrid() {
             <FlexBox key={index} className="option-container">
                 {type === 'rows' ? 
                     <span className="option-container__dropdown-option-number">{`${index+1}.`}</span>:
-                    <MaterialIcon name = 'radio_button_unchecked' />
+                    <MaterialIcon name = 'check_box_outline_blank' />
                 }
                 <Input {...inputProps}/>
                 <MaterialIcon className = 'option-container__image-icon' style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} handlers = {{onClick: () => deleteOption(index, type)}} name = 'close'/>
@@ -75,7 +74,7 @@ export default function MultipleChoiceGrid() {
             <FlexBox key={options.length} className="option-container">
                 {type === 'rows' ? 
                     <span className="option-container__dropdown-option-number">{`${options.length + 1}.`}</span>:
-                    <MaterialIcon name = 'radio_button_unchecked' />
+                    <MaterialIcon name = 'check_box_outline_blank' />
                 }
                 <div className="add-option-container">
                     <span className="add-option-container__add-option" onClick = {() => addOption(type)}>Add option</span>
@@ -98,7 +97,6 @@ export default function MultipleChoiceGrid() {
             </>
         );
     }
-
 
     return (
         <div className='tab-content'>

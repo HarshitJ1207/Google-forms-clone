@@ -45,11 +45,11 @@ export default function LinearScaleTab(){
         }
     }
     return (
-        <>
+        <div className='tab-content'>
             <FlexBox align="stretch">
                 <Select {...props1}>
                     <p className='linear-scale-tab__dropdown-item'>0</p>
-                    <p className='rating-tab__dropdown-item'>1</p>
+                    <p className='linear-scale-tab__dropdown-item'>1</p>
                 </Select>
                 <Select {...props2}>
                     <p className='linear-scale-tab__dropdown-item'>2</p>
@@ -63,7 +63,7 @@ export default function LinearScaleTab(){
                     <p className='linear-scale-tab__dropdown-item'>10</p>
                 </Select>
             </FlexBox>
-            <FlexBox direction='column' gap='2rem' align='start' className=''>
+            <FlexBox direction='column' gap='2rem' align='start' style={{marginTop: '1rem'}}>
                 <FlexBox>
                     <span className='linear-scale-tab__label-span' style={startLabelVal === '' ? { color: 'gray' } : null}>{startValue}</span>
                     <Input {...inputProps1}/>
@@ -73,6 +73,6 @@ export default function LinearScaleTab(){
                     <Input {...inputProps2}/>
                 </FlexBox>
             </FlexBox>
-        </>
+        </div>
     );
 }

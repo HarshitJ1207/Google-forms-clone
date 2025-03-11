@@ -1,0 +1,7 @@
+.multiple-choice-grid-subsection{
+    flex-basis: 50%;
+}
+
+.multiple-choice-grid-subsection__header{
+    font-weight: 500;
+}

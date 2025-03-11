@@ -13,6 +13,8 @@ import TimeTab from "./Content/TimeTab";
 import DateTab from "./Content/DateTab.jsx";
 import LinearScaleTab from "./Content/LinearScale.jsx";
 import MultipleChoiceGrid from './Content/MultipleChoiceGrid';
+import CheckboxGrid from './Content/CheckboxGrid';
+import FileUpload from './Content/FileUpload.jsx';
 
 export default function QuestionTab(){
     const [tabType, setTabType] = useState(0);
@@ -28,18 +30,20 @@ export default function QuestionTab(){
                 return <Checkbox />;
             case 4:
                 return <DropdownTab />;
+            case 5:
+                return <FileUpload />;
             case 6:
                 return <LinearScaleTab />;
             case 7:
                 return <RatingTab />;
             case 8:
                 return <MultipleChoiceGrid />;
+            case 9:
+                return <CheckboxGrid />;
             case 10:
                 return <DateTab />;
             case 11:
                 return <TimeTab />;
-            default: 
-                return <ShortAnswer />;
         }
     }
     return (
