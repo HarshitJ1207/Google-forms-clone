@@ -1,8 +1,23 @@
+import MaterialIcon from '../../Elements/MaterialIcon';
+import Input from '../../Elements/Input';
+import FlexBox from '../../Layout/FlexBox';
+import './DateTime.css';
 export default function TimeTab(){
+    const inputProps = {
+        options: {
+            readOnly: true,
+            variant: 'borderless'
+        },
+        attributes: {
+            value: 'Time'
+        },
+        className: 'tab-content__time-bar'
+
+    }
     return (
-        <div className="tab-content time-tab-container">
-            <p className="tab-content__time-bar">Time</p>
-            <span className="material-symbols-outlined">schedule</span>
-        </div>
+        <FlexBox className="tab-content time-tab-container">
+             <Input {...inputProps}/>
+            <MaterialIcon name = 'schedule'/>
+        </FlexBox>
     );
 }

@@ -1,13 +1,4 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    padding: 4rem 0 4rem 0;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-}
-
-.form-tab {
+.form-tab{
     background-color: white;
     width: 100%;
     max-width: 48rem;
@@ -18,105 +9,9 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    box-shadow: 0 0 0.5rem rgba(162, 162, 162, 0.5);
 }
 
 .title-tab{
     border-top: 0.5rem solid var(--primary-color);
-}
-
-.tab__title-bar{
-    width: 100%;
-    border: 0;
-    border-bottom: 0.1rem solid lightgray;
-    font-size: 2rem;
-    outline: none;
-}
-
-.tab__description-bar{
-    width: 100%;
-    border: 0;
-    border-bottom: 0.1rem solid lightgray;
-    outline: none;
-    font-size: 1rem;
-}
-
-.tab__question-bar{
-    width: 100%;
-    background-color: rgb(241, 241, 241);
-    border: 0;
-    border-bottom: 0.1rem solid gray;
-    padding: 1rem;
-    font-size: 1.2rem;
-    outline: none;
-}
-
-.tab__title-bar:focus,
-.tab__description-bar:focus,
-.tab__question-bar:focus {
-    border-bottom: 0.15rem solid var(--primary-color);
-}   
-
-.tab-header{
-    display: flex;
-    gap: 1rem;
-    flex-grow: 1;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tab__textbox-container{
-    width: 100%;
-}
-
-.tab__type-dropdown,
-.tab__rating-dropdown{
-    position: relative;
-    min-width: max-content;
-    width: 13rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: start;
-    border: 0.1rem solid lightgray;
-    padding: 0.1rem 3rem 0.1rem 1rem;
-    border-radius: 0.25rem;
-    font-size: 0.9rem;
-}
-.tab__rating-dropdown{
-    width: 4rem;
-    height: 100%;
-}
-
-.rating-tab-dropdown-container{
-    display: flex;
-    gap: 1rem;
-}
-
-.tab__type-dropdown::after,
-.tab__rating-dropdown::after{
-    content: '▼';
-    color: gray;
-    position: absolute;
-    right: 1rem;
-}
-
-.tab-footer{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
-    border-top: 0.1rem solid lightgray;
-    padding-top: 1rem;
-}
-
-.tab-footer__divider{
-    width: 0.1rem;
-    height: 1.5rem;
-    margin: 0;
-    border-style: solid;
-    border-color: lightgray;
-}
-
-.tab-footer__required-label{
-    font-size: 0.9rem;
 }

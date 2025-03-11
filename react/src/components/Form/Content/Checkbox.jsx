@@ -1,6 +1,9 @@
+import './MultipleChoice.css';
 import { useState } from "react";
-
-export default function MultipleChoice() {
+import FlexBox from "../../Layout/FlexBox";
+import MaterialIcon from "../../Elements/MaterialIcon";
+import Input from "../../Elements/Input";
+export default function Checkbox() {
     const [options, setOptions] = useState(
         [
             'Option 1'
@@ -22,55 +25,59 @@ export default function MultipleChoice() {
         });
     };
     const renderOption = (option, index) => {
+        const inputProps = {
+            className: "option-container__option-bar",
+            attributes: {
+                value: option
+            },
+            handlers:{
+                onChange: (e) => {
+                    setOptions((prevOptions) => {
+                    const newOptions = [...prevOptions];
+                    newOptions[index] = e.target.value;
+                    return newOptions;
+                    });
+                }
+            },
+            options: {
+                variant: 'borderless'
+            }
+        }
         return (
-            <div className="option-container" key={index}>
-                <span className="material-symbols-outlined">check_box_outline_blank</span>
-                <input
-                    type="text"
-                    className="option-container__option-bar"
-                    value={option}
-                    onChange={(e) => {
-                        setOptions((prevOptions) => {
-                        const newOptions = [...prevOptions];
-                        newOptions[index] = e.target.value;
-                        return newOptions;
-                        });
-                    }}
-                    />
-
-                <span className="material-symbols-outlined option-container__image-icon">
-                    image
-                </span>
-                <span className="material-symbols-outlined" style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} onClick={() => deleteOption(index)}>close</span>
-            </div>
+            <FlexBox key={index} className="option-container">
+                <MaterialIcon name = 'check_box_outline_blank' />
+                <Input {...inputProps}/>
+                <MaterialIcon className = 'option-container__image-icon' name = 'image'/>
+                <MaterialIcon className = 'option-container__image-icon' style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} handlers = {{onClick: () => deleteOption(index)}} name = 'close'/>
+            </FlexBox>
         );
     }
     const renderAddOption = () => {
         if(!addedOther){
             return (
-                <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">check_box_outline_blank</span>
+                <FlexBox key={options.length} className="option-container">
+                    <MaterialIcon name = 'check_box_outline_blank' />
                     <div className="add-option-container">
                         <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
                         or
                         <span className="add-option-container__add-other" onClick={() => setAddedOther(true)}>add "Other"</span>
                     </div>
-                </div>
+                </FlexBox>
             );
         }
         else {
             return <>
-                <div className="option-container" key={options.length}>
-                    <span className="material-symbols-outlined">check_box_outline_blank</span>
+                <FlexBox key={options.length} className="option-container">
+                    <MaterialIcon name = 'check_box_outline_blank' />
                     <span className="option-container__other-option">Other...</span>
-                    <span className="material-symbols-outlined" onClick={() => deleteOption(-1)}>close</span>
-                </div>
-                <div className="option-container" key={options.length+1}>
-                    <span className="material-symbols-outlined">check_box_outline_blank</span>
+                    <MaterialIcon handlers = {{onClick: () => deleteOption(-1)}} name = 'close'/>
+                </FlexBox>
+                <FlexBox key={options.length+1} className="option-container">
+                    <MaterialIcon name = 'check_box_outline_blank' />
                     <div className="add-option-container">
                         <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
                     </div>
-                </div>
+                </FlexBox>
             </>
 
         }
@@ -90,9 +97,9 @@ export default function MultipleChoice() {
     }
     return (
         <div className="tab-content">
-            <div className="options-container">
+            <FlexBox direction="column" align="stretch">
                 {renderOptions()}
-            </div>
+            </FlexBox>
         </div>
     );
 

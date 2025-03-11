@@ -1,16 +1,19 @@
+import QuestionTab from './QuestionTab';
+import './Form.css'
 import TitleTab from "./TitleTab";
-import QuestionTab from "./QuestionTab"
-import "./Form.css"
-
-export default function Form() {
+import FlexBox from '../Layout/FlexBox';
+export default function Form (){
+    const flexboxProps = {
+        direction: 'column',
+        style: {
+            marginTop: '2.5rem',
+            fontSize: '0.9rem'
+        }
+    }
     return (
-        <div className = 'form'>
-            <TitleTab/>
-            <QuestionTab/>
-        </div>
+        <FlexBox {...flexboxProps}>
+            <TitleTab />
+            <QuestionTab />
+        </FlexBox>
     );
 }
-
-
-
-    

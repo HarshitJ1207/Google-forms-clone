@@ -1,14 +1,12 @@
-import UpperNavBar from './UpperNavBar.jsx';
-import LowerNavBar from './LowerNavBar.jsx';
-import './NavBar.css';
+import './Navbar.css'
+import UpperNavbar from './UpperNavbar.jsx';
+import LowerNavbar from './LowerNavbar.jsx';
 
-function NavBar(){
+export default function Navbar(){
     return (
-        <div className="navbar">
-            <UpperNavBar/>
-            <LowerNavBar/>
-        </div>
+        <nav className = 'navbar'>
+            <UpperNavbar />
+            <LowerNavbar />
+        </nav>
     );
-};
-
-export default NavBar;
+}

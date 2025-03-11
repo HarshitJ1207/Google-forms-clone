@@ -1,8 +1,23 @@
+import Input from '../../Elements/Input';
+import MaterialIcon from '../../Elements/MaterialIcon';
+import FlexBox from '../../Layout/FlexBox';
+import './DateTime.css';
 export default function DateTab(){
+    const inputProps = {
+        options: {
+            readOnly: true,
+            variant: 'borderless'
+        },
+        attributes: {
+            value: 'Month, day, year'
+        },
+        className: 'tab-content__date-bar'
+
+    }
     return (
-        <div className="tab-content date-tab-container">
-            <p className="tab-content__date-bar">Month, day, year</p>
-            <span className="material-symbols-outlined">event</span>
-        </div>
+        <FlexBox className="tab-content date-tab-container">
+            <Input {...inputProps}/>
+            <MaterialIcon name = 'event' />
+        </FlexBox>
     );
 }

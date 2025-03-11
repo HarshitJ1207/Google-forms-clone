@@ -1,0 +1,19 @@
+.favorite-icon,
+.thumb_up-icon{
+    padding: 0.5rem 0;
+}
+
+.grade-icon{
+    color: rgb(248, 194, 58);
+}
+.favorite-icon{
+    color: red;
+}
+.thumb_up-icon{
+    color: rgb(65, 65, 220);
+}
+
+.rating-tab__dropdown-item{
+    padding: 0.5rem;
+    margin: 0;
+}

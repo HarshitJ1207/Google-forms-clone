@@ -1,4 +1,8 @@
+import './MultipleChoice.css';
 import { useState } from "react";
+import FlexBox from "../../Layout/FlexBox";
+import MaterialIcon from "../../Elements/MaterialIcon";
+import Input from "../../Elements/Input";
 
 export default function MultipleChoice() {
     const [options, setOptions] = useState(
@@ -20,33 +24,40 @@ export default function MultipleChoice() {
         });
     };
     const renderOption = (option, index) => {
+        const inputProps = {
+            className: "option-container__option-bar",
+            attributes: {
+                value: option
+            },
+            handlers:{
+                onChange: (e) => {
+                    setOptions((prevOptions) => {
+                    const newOptions = [...prevOptions];
+                    newOptions[index] = e.target.value;
+                    return newOptions;
+                    });
+                }
+            },
+            options: {
+                variant: 'borderless'
+            }
+        }
         return (
-            <div className="option-container" key={index}>
+            <FlexBox key={index}>
                 <span className="option-container__dropdown-option-number">{`${index+1}.`}</span>
-                <input
-                    type="text"
-                    className="option-container__option-bar"
-                    value={option}
-                    onChange={(e) => {
-                        setOptions((prevOptions) => {
-                        const newOptions = [...prevOptions];
-                        newOptions[index] = e.target.value;
-                        return newOptions;
-                        });
-                    }}
-                    />
-                <span className="material-symbols-outlined" style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} onClick={() => deleteOption(index)}>close</span>
-            </div>
+                <Input {...inputProps}/>
+                <MaterialIcon className = 'option-container__image-icon' style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} handlers = {{onClick: () => deleteOption(index)}} name = 'close'/>
+            </FlexBox>
         );
     }
     const renderAddOption = () => {
         return <>
-            <div className="option-container" key={options.length}>
+            <FlexBox key={options.length}>
             <span className="option-container__dropdown-option-number">{`${options.length+1}.`}</span>
-                <div className="add-option-container">
-                    <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
-                </div>
+            <div className="add-option-container">
+                <span className="add-option-container__add-option" onClick={addOption}>Add option</span>
             </div>
+            </FlexBox>
         </>
     }
 
@@ -64,9 +75,9 @@ export default function MultipleChoice() {
     }
     return (
         <div className="tab-content">
-            <div className="options-container">
+            <FlexBox direction="column" align="stretch">
                 {renderOptions()}
-            </div>
+            </FlexBox>
         </div>
     );
 

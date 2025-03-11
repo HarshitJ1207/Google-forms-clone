@@ -1,0 +1,87 @@
+.toggle{
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    background-color: #ccc;
+}
+.toggle--active{
+    background-color: var(--background-color);
+}
+
+.slider{
+    box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    background-color: white;
+    float: left;
+}
+
+.slider:hover{
+    box-shadow: 0 0 0 0.5rem rgba(162, 162, 162, 0.2);
+}
+
+.slider--active{
+    background-color: var(--primary-color);
+    float: right;
+}
+
+
+.toggle-xs {
+    width: 1.2rem;
+    height: 0.6rem;
+    border-radius: 0.3rem;
+}
+
+.slider-xs {
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+/* Small */
+.toggle-small {
+    width: 1.75rem;
+    height: 0.875rem;
+    border-radius: 0.4375rem;
+}
+
+.slider-small {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+
+/* Medium */
+.toggle-medium {
+    width: 2rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+}
+
+.slider-medium {
+    width: 1rem;
+    height: 1rem;
+}
+
+
+/* Large */
+.toggle-large {
+    width: 2.5rem;
+    height: 1.25rem;
+    border-radius: 0.625rem;
+}
+
+.slider-large {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+
+/* XL */
+.toggle-xl {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.slider-xl {
+    width: 2rem;
+    height: 2rem;
+}

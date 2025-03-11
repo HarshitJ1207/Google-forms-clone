@@ -1,8 +1,10 @@
+import './ShortAnswer.css';
+import Input from "../../Elements/Input";
 export default function Paragraph (){
 
     return (
         <div className="tab-content">
-            <p className = 'tab-content__long-answer-bar'>Long answer text</p>
+            <Input className = 'tab-content__long-answer-bar' attributes = {{value: 'Long answer text'}} options = {{readOnly: true}} />
         </div>
     );
 }

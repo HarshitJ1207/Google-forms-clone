@@ -1,26 +1,17 @@
-:root {
-    --background-color: rgb(240, 235, 248); 
-    --primary-color: rgb(103,58,153);
-    --secondary-color:rgb(26, 115, 232);
-    --font-gray: rgb(32, 33, 36);
-    --border-gray: rgb(218,220,224);
+.icon-button{
+    border-radius: 100%;
+    padding: 0.4rem;
+}
+.icon-button:hover{
+    background-color: rgba(162, 162, 162, 0.2);
 }
 
-*{
-    box-sizing: border-box;
-    font-family: "Roboto", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-}
 .material-symbols-outlined{
-    color: rgb(105, 105, 105);
+    color: rgb(95, 99, 104);
 }
 
-body{
-    background-color:var(--background-color);
-    margin: 0;
-    min-width: 42rem;
-    min-height: 100vh;
+.option{
+    width: 10rem;
+    min-width: max-content;
+    padding: 0.5rem;
 }

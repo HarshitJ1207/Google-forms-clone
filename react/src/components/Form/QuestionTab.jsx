@@ -1,7 +1,9 @@
-import './Content/Content.css'
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
+
 import { useState } from 'react';
+
+import './Content/Content.css'
 import RatingTab from './Content/RatingTab';
 import ShortAnswer from './Content/ShortAnswer';
 import Paragraph from './Content/Paragraph';
@@ -9,17 +11,12 @@ import MultipleChoice from "./Content/MultipleChoice"
 import DropdownTab from "./Content/DropdownTab";
 import Checkbox from "./Content/Checkbox";
 import TimeTab from "./Content/TimeTab";
-import DateTab from "./Content/DateTab";
+import DateTab from "./Content/DateTab.jsx";
 
 export default function QuestionTab(){
-    const [type, setType] = useState(0);
-    const headerProps = {
-        value: type,
-        setValue: setType
-    }
-
+    const [tabType, setTabType] = useState(0);
     const getComponent = () => {
-        switch(type) {
+        switch(tabType) {
             case 0:
                 return <ShortAnswer />;
             case 1:
@@ -40,14 +37,11 @@ export default function QuestionTab(){
                 return <ShortAnswer />;
         }
     }
-    console.log('tabType', type);
-    return(
-        <div className="form-tab">
-            <Header state={headerProps}/>
-            {
-                getComponent()
-            }
-            <Footer/>
+    return (
+        <div className='form-tab'>
+            <Header tabState = {[tabType, setTabType]} />
+            {getComponent()}
+            <Footer />
         </div>
     );
 }

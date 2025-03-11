@@ -1,13 +1,12 @@
 import './App.css'
-import NavBar from './components/navbar/NavBar';
-import Form from './components/Form/Form'
-function App() {
-	return (
-		<>
-            <NavBar />
-            <Form/>
-		</>
-	)
+import Navbar from './Components/Navbar/Navbar';
+import Form from './Components/Form/Form';
+export default function App(){    
+    return (
+        <>
+            <Navbar/>
+            <Form />
+        </>
+    );
 }
 
-export default App

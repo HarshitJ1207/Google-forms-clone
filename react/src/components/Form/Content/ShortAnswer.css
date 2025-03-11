@@ -1,0 +1,13 @@
+.tab-content__short-answer-bar,
+.tab-content__long-answer-bar{
+    width: 25rem;
+    border-bottom: 1px dotted var(--font-gray);
+    color: var(--font-gray);
+    font-size: 0.9rem;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.tab-content__long-answer-bar{
+    width: 35rem;
+}

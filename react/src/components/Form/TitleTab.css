@@ -1,0 +1,14 @@
+.tab__title-bar{
+    width: 100%;
+    border-bottom: 0.1rem solid lightgray;
+}
+
+.tab__description-bar{
+    width: 100%;
+    border-bottom: 0.1rem solid lightgray;
+}
+
+.tab__title-bar:focus,
+.tab__description-bar:focus {
+    border-bottom: 0.15rem solid var(--primary-color);
+}  
