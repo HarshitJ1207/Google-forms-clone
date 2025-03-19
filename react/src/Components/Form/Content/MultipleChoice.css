@@ -2,6 +2,10 @@
     visibility: hidden;
 }
 
+.option-container-inactive__option-bar{
+    width: 100%;
+    font-size: 0.9rem;
+}
 .option-container__option-bar{
     width: 100%;
     font-size: 0.9rem;
@@ -41,6 +45,10 @@
     visibility: visible;
 }
 
+.option-container-inactive__other-option{
+    color: var(--font-gray);
+    width: 100%;
+}
 .option-container__other-option{
     color: var(--font-gray);
     width: 100%;

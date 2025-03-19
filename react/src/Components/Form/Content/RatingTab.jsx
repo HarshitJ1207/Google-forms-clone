@@ -5,9 +5,12 @@ import FlexBox from "../../Layout/FlexBox";
 import Button from '../../Elements/Button';
 import MaterialIcon from '../../Elements/MaterialIcon';
 import FormDataContext from '../../../Context/FormDataContext'
+import SelectedTabContext from '../../../Context/SelectedTabContext';
 export default function RatingTab({tabIndex}) {
     // const [count, setCount] = useState(5);
     // const [symbol , setSymbol] = useState('grade');
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = (selectedTab && selectedTab[0] === tabIndex);
     const {formData, setFormData} = useContext(FormDataContext);
     const count = formData.formTabs[tabIndex].count;
     const setCount = (val) => setFormData(prev => {
@@ -60,17 +63,17 @@ export default function RatingTab({tabIndex}) {
         menu: [
             {
                 key: 'grade',
-                label: <span className="material-icons grade-icon rating-tab__dropdown-item">grade</span>,
+                label: <MaterialIcon className="rating-tab__dropdown-item grade-icon" name="grade" view = {MaterialIcon.VIEW.FILLED}/>,
                 onClick(){setSymbol(this.key);},
             },
             {
                 key: 'favorite',
-                label: <span className="material-icons favorite-icon rating-tab__dropdown-item">favorite</span>,
+                label: <MaterialIcon className="rating-tab__dropdown-item favorite-icon" name="favorite" view = {MaterialIcon.VIEW.FILLED}/>,
                 onClick(){setSymbol(this.key);}
             },
             {
                 key: 'thumb_up',
-                label: <span className="material-icons thumb_up-icon rating-tab__dropdown-item">thumb_up</span>,
+                label: <MaterialIcon className="rating-tab__dropdown-item thumb_up-icon" name="thumb_up" view = {MaterialIcon.VIEW.FILLED}/>,
                 onClick(){setSymbol(this.key);}
             },
         ],
@@ -78,25 +81,28 @@ export default function RatingTab({tabIndex}) {
     }
     return (
         <div className='tab-content'>
-            <FlexBox align="stretch">
-                <Dropdown {...props1}>
-                    <Button view = {Button.VIEW.DEFAULT} className="rating-tab__dropdown-button">
-                        <FlexBox>
-                            {props1.menu.find(ele => ele.key === count).label}
-                            <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
-                        </FlexBox>
-                    </Button>
-                </Dropdown>
-                <Dropdown {...props2}>
-                    <Button view = {Button.VIEW.DEFAULT} className="rating-tab__dropdown-button">
-                        <FlexBox>
-                            {props2.menu.find(ele => ele.key === symbol).label}
-                            <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
-                        </FlexBox>
-                    </Button>
-                </Dropdown>
-            </FlexBox>
-            <div style={{marginTop: '2rem'}}>
+            {
+                selected &&
+                <FlexBox align="stretch" className="rating-tab__config-section">
+                    <Dropdown {...props1}>
+                        <Button view = {Button.VIEW.DEFAULT} className="rating-tab__dropdown-button">
+                            <FlexBox>
+                                {props1.menu.find(ele => ele.key === count).label}
+                                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
+                            </FlexBox>
+                        </Button>
+                    </Dropdown>
+                    <Dropdown {...props2}>
+                        <Button view = {Button.VIEW.DEFAULT} className="rating-tab__dropdown-button">
+                            <FlexBox>
+                                {props2.menu.find(ele => ele.key === symbol).label}
+                                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
+                            </FlexBox>
+                        </Button>
+                    </Dropdown>
+                </FlexBox>
+            }
+            <div>
                 <FlexBox justify="space-around">
                     {[...Array(count)].map((_, index) => <p key={index}>{index + 1}</p>)}
                 </FlexBox>

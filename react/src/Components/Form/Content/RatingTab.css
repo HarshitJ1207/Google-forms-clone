@@ -13,6 +13,10 @@
     color: rgb(65, 65, 220);
 }
 
+.rating-tab__config-section{
+    margin-bottom: 2rem;
+}
+
 .rating-tab__dropdown-button{
     height: 100%;
 }

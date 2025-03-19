@@ -17,7 +17,7 @@ import CheckboxGrid from './Content/CheckboxGrid';
 import FileUpload from './Content/FileUpload.jsx';
 import FormDataContext from '../../Context/FormDataContext.jsx';
 import SelectedTabContext from '../../Context/SelectedTabContext.jsx';
-
+import HeaderInactive from './HeaderInactive.jsx';
 export default function QuestionTab({onClickCapture, tabIndex}){
     const {formData} = useContext(FormDataContext);
     const {selectedTab} = useContext(SelectedTabContext)
@@ -50,18 +50,12 @@ export default function QuestionTab({onClickCapture, tabIndex}){
                 return <TimeTab tabIndex = {tabIndex}/>;
         }
     }
-    if(selectedTab && selectedTab[0] === tabIndex) return (
-        <div className='form-tab form-tab--selected' onClickCapture = {onClickCapture}>
-            <Header tabIndex = {tabIndex} />
+    const selected = selectedTab && selectedTab[0] === tabIndex
+    return (
+        <div className={`form-tab ${selected ? 'form-tab--selected' : ''}`.trim()} onClickCapture = {onClickCapture}>
+            {selected ? <Header tabIndex = {tabIndex} /> : <HeaderInactive tabIndex = {tabIndex}/>}
             {getComponent()}
-            <Footer tabIndex = {tabIndex}/>
-        </div>
-    );
-    else return (
-        <div className='form-tab' onClickCapture = {onClickCapture}>
-            <Header tabIndex = {tabIndex} />
-            {getComponent()}
-            <Footer tabIndex = {tabIndex}/>
+            {selected && <Footer tabIndex = {tabIndex}/>}
         </div>
     );
 }

@@ -1,8 +1,6 @@
 import './MaterialIcon.css';
 
-export default function MaterialIcon({ name = '', className = '', attributes = {}, options = {}, onClick }) {
-    const { view = 'outlined', size = 'medium' } = options;
-
+export default function MaterialIcon({ name = '', className = '', attributes = {}, view = 'outlined', size = 'medium', onClick = () => {}}) {
     let localClassName = '';
 
     switch (view) {

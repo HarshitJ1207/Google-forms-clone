@@ -4,8 +4,11 @@ import FlexBox from "../../Layout/FlexBox";
 import MaterialIcon from "../../Elements/MaterialIcon";
 import Input from "../../Elements/Input";
 import FormDataContext from '../../../Context/FormDataContext';
+import SelectedTabContext from '../../../Context/SelectedTabContext';
 export default function MultipleChoice({tabIndex}) {
     const {formData, setFormData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = selectedTab && selectedTab[0] === tabIndex;
     const options = formData.formTabs[tabIndex].options || [];
     const setOptions = (f) => setFormData(prev => {
         const next = structuredClone(prev);
@@ -34,15 +37,15 @@ export default function MultipleChoice({tabIndex}) {
     };
     const renderOption = (option, index) => {
         const inputProps = {
-            className: "option-container__option-bar",
+            className: selected ? "option-container__option-bar" : "option-container-inactive__option-bar",
             attributes: {
                 value: option
             },
             onChange: (e) => {
                 setOptions((prevOptions) => {
-                const newOptions = [...prevOptions];
-                newOptions[index] = e.target.value;
-                return newOptions;
+                    const newOptions = [...prevOptions];
+                    newOptions[index] = e.target.value;
+                    return newOptions;
                 });
             },
             options: {
@@ -53,8 +56,8 @@ export default function MultipleChoice({tabIndex}) {
             <FlexBox key={index} className="option-container">
                 <MaterialIcon name = 'radio_button_unchecked' />
                 <Input {...inputProps}/>
-                <MaterialIcon className = 'option-container__image-icon' name = 'image'/>
-                <MaterialIcon className={options.length === 1 ? 'visiblity-hidden': ''} onClick = {() => deleteOption(index)} name = 'close'/>
+                {selected && <MaterialIcon className = 'option-container__image-icon' name = 'image'/>}
+                {selected && <MaterialIcon className={options.length === 1 ? 'visiblity-hidden': ''} onClick = {() => deleteOption(index)} name = 'close'/>}
             </FlexBox>
         );
     }
@@ -73,11 +76,6 @@ export default function MultipleChoice({tabIndex}) {
         }
         else {
             return <>
-                <FlexBox key={options.length} className="option-container">
-                    <MaterialIcon name = 'radio_button_unchecked' />
-                    <span className="option-container__other-option">Other...</span>
-                    <MaterialIcon onClick = {() => deleteOption(-1)} name = 'close'/>
-                </FlexBox>
                 <FlexBox key={options.length+1} className="option-container">
                     <MaterialIcon name = 'radio_button_unchecked' />
                     <div className="add-option-container">
@@ -88,6 +86,16 @@ export default function MultipleChoice({tabIndex}) {
 
         }
     }
+    const renderOtherOption = () => {
+        if (!addedOther) return;
+        return (
+            <FlexBox key={options.length} className="option-container">
+                <MaterialIcon name='radio_button_unchecked' />
+                <span className={`option-container${selected ? '' : '-inactive'}__other-option`}>Other...</span>
+                {selected && <MaterialIcon onClick={() => deleteOption(-1)} name='close' />}
+            </FlexBox>
+        );
+    };
 
     const renderOptions = () => {
         return (
@@ -96,7 +104,10 @@ export default function MultipleChoice({tabIndex}) {
                     options.map((option, index) => renderOption(option, index))
                 }
                 {
-                    renderAddOption()
+                    renderOtherOption()
+                }
+                {
+                    selected && renderAddOption()
                 }
             </>
         );

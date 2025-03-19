@@ -2,8 +2,16 @@
     width: 30rem;
 }
 
+.file-upload-tab__button{
+    padding: 0.5rem;
+}
+
 .checkbox:hover{
     box-shadow: 0 0 0 0.25rem rgba(162, 162, 162, 0.2);
     border-radius: 100%;
     background-color: rgba(162, 162, 162, 0.2);
+}
+
+.rating-tab__show-folder-button{
+    color: var(--secondary-color);
 }

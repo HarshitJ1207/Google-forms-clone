@@ -30,7 +30,7 @@ export default function TitleTab({ onClickCapture }) {
     };
 
     const titleBarProps = {
-        className: 'tab__title-bar',
+        className: (selectedTab && selectedTab[0] === -1) ? 'tab__title-bar': 'tab-inactive__title-bar',
         onFocus: () => setActive('title'),
         onBlur: handleBlur,
         onChange: (e) => setTitle(e.target.value),
@@ -39,7 +39,7 @@ export default function TitleTab({ onClickCapture }) {
     };
 
     const descriptionBarProps = {
-        className: 'tab__description-bar',
+        className: (selectedTab && selectedTab[0] === -1) ? 'tab__description-bar': 'tab-inactive__description-bar',
         onFocus: () => setActive('description'),
         onBlur: () => setActive(null),
         onChange: (e) => setDescription(e.target.value),

@@ -9,8 +9,11 @@ import { useContext } from 'react';
 import MaterialIcon from '../../Elements/MaterialIcon';
 import Button from '../../Elements/Button';
 import FormDataContext from '../../../Context/FormDataContext';
+import SelectedTabContext from '../../../Context/SelectedTabContext';   
 export default function FileUpload({tabIndex}){
     const {formData, setFormData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = (selectedTab && selectedTab[0] === tabIndex);
     const allowOnlySpecificFileTypes = formData.formTabs[tabIndex].allowOnlySpecificFileTypes;
     const maxCount = formData.formTabs[tabIndex].maxCount;
     const maxSize = formData.formTabs[tabIndex].maxSize;
@@ -79,7 +82,7 @@ export default function FileUpload({tabIndex}){
         ],
         selectedKeys: [maxSize]
     }
-    return (
+    if(selected) return (
         <div className="tab-content">   
             <FlexBox direction="column" align="stretch" className="file-upload-tab-main">
                 <div>
@@ -148,5 +151,25 @@ export default function FileUpload({tabIndex}){
                 </FlexBox>
             </FlexBox>
         </div>
+    );
+    else return (
+        <div className="tab-content">
+            <FlexBox justify={FlexBox.JUSTIFY.SPACE_BETWEEN}>
+                <Button view={Button.VIEW.DEFAULT} className='file-upload-tab__button'>
+                    <FlexBox gap='0.25rem'>
+                        <MaterialIcon name='upload' size={MaterialIcon.SIZE.SMALL}/>
+                        <span>Add file</span>
+                    </FlexBox>
+                </Button>
+                <Button view={Button.VIEW.DEFAULT} className='file-upload-tab__button'>
+                    <FlexBox gap='0.25rem'>
+                        <MaterialIcon className = 'rating-tab__show-folder-button' name='add_to_drive' view = {MaterialIcon.VIEW.FILLED} size={MaterialIcon.SIZE.SMALL}/>
+                        <span className = 'rating-tab__show-folder-button'>View Folder</span>
+                    </FlexBox>
+                </Button>
+            </FlexBox>
+        </div>
+
+
     );
 }

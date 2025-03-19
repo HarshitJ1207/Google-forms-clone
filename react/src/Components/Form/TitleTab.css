@@ -8,6 +8,10 @@
     border-bottom: 0.1rem solid var(--border-gray);
 }
 
+.tab-inactive__description-bar{
+    width: 100%;
+}
+
 .tab__title-bar:focus,
 .tab__description-bar:focus {
     border-bottom: 0.15rem solid var(--primary-color);

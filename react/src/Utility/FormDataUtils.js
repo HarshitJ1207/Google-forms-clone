@@ -1,6 +1,6 @@
 class FormDataUtils {
     static defaultValues = {
-        question: "New question",
+        question: "",
         required: false,
         options: ["Option 1"],
         rows: ["Row 1"],
