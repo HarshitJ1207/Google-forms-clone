@@ -55,10 +55,21 @@ function UpperRightNavbar() {
         },
     }
     const props = {
-        node: <MaterialIcon {...materialIconOutlinedProps} name = 'more_vert'/>,
-        align: Dropdown.ALIGN.RIGHT,
-        stateManagement: Dropdown.STATE.NONE,
-        className: 'icon-button'
+        menu: [
+            {   key: 0,
+                label: <FlexBox className='option'><span className="material-symbols-outlined">content_copy</span><span>Make a copy</span></FlexBox>
+            },
+            {
+                key: 1,
+                label: <FlexBox className='option'><span className="material-symbols-outlined">delete</span><span>Move to thrash</span></FlexBox>
+            },
+            {
+                key: 2,
+                label: <FlexBox className='option'><span className="material-symbols-outlined">extension</span><span>Get Add ons</span></FlexBox>
+            }
+        ],
+        placement: Dropdown.PLACEMENT.RIGHT,
+        trigger: ['hover']
     }
     return (
         <FlexBox gap = '1.2rem'>
@@ -70,9 +81,7 @@ function UpperRightNavbar() {
             <MaterialIcon {...materialIconOutlinedProps} name = 'person_add' />
             <Button {...publishButtonProps}>Publish</Button>
             <Dropdown {...props}>
-                <FlexBox className='option'><span className="material-symbols-outlined">content_copy</span><span>Make a copy</span></FlexBox>
-                <FlexBox className='option'><span className="material-symbols-outlined">delete</span><span>Move to thrash</span></FlexBox>
-                <FlexBox className='option'><span className="material-symbols-outlined">extension</span><span>Get Add ons</span></FlexBox>
+                <MaterialIcon {...materialIconOutlinedProps} name = 'more_vert'/>
             </Dropdown>
             <MaterialIcon {...materialIconOutlinedProps} name = 'account_circle' />
         </FlexBox>

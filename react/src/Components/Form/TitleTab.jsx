@@ -47,7 +47,7 @@ export default function TitleTab({ onClickCapture }) {
         options: { view: Input.VIEW.BORDERLESS }
     };
 
-    if(selectedTab && selectedTab[0] === 0) return (
+    if(selectedTab && selectedTab[0] === -1) return (
         <div className='form-tab title-tab form-tab--selected' onClickCapture={onClickCapture}>
             <div>
                 <Input {...titleBarProps} />

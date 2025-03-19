@@ -1,33 +1,32 @@
 import './Footer.css'
 import ToggleSlider from "../UtilityComponents/ToggleSlider";
 import MaterialIcon from "../Elements/MaterialIcon";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import FlexBox from '../Layout/FlexBox';
 import FormDataContext from '../../Context/FormDataContext';
-import SelectedTabContext from '../../Context/SelectedTabContext';
 
-export default function Footer() {
-    const [toggleState, setToggleState] = useState(false);
-    const {setFormData} = useContext(FormDataContext);
-    const {selectedTab, setSelectedTab} = useContext(SelectedTabContext)
-    const deleteTab = (e) => {
-        console.log(e);
-        e.stopPropagation();
-        console.log(selectedTab);
+export default function Footer({tabIndex}) {
+    // const [toggleState, setToggleState] = useState(false);
+    const {formData, setFormData} = useContext(FormDataContext);
+    const toggleState = formData.formTabs[tabIndex].required;
+    const setToggleState = (val) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].required = val;
+        return next;
+    })
+    const deleteTab = () => {
         setFormData(prev => {
             const next = structuredClone(prev);
-            next.formTabs.splice(selectedTab[0] - 1, 1);
+            next.formTabs.splice(tabIndex, 1);
             return next;
         })
         setSelectedTab(null);
     }
-    const cloneTab = (e) => {
-        console.log(e);
-        e.stopPropagation();
-        console.log(selectedTab);
+    const cloneTab = () => {
         setFormData(prev => {
             const next = structuredClone(prev);
-            next.formTabs.splice(selectedTab[0], 0, next.formTabs[selectedTab[0] - 1]);
+            const newTab = structuredClone(next.formTabs[tabIndex]);
+            next.formTabs.splice(tabIndex + 1, 0, newTab);
             return next;
         })
         setSelectedTab(null);
@@ -40,7 +39,6 @@ export default function Footer() {
             <hr className = 'tab-footer__divider'/>
             <label className="tab-footer__required-label" onClick={() => setToggleState(!toggleState)}>Required</label>
             <ToggleSlider size='large' state = {toggleState}/>
-            <MaterialIcon name = 'more_vert'className='icon-button'  />
         </FlexBox>
     );
 

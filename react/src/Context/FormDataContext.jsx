@@ -24,7 +24,6 @@ const FormDataContext = createContext(null);
 export function FormDataProvider({ children }) {
     const [formData, setFormData] = useState(() => {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-        // return defaultFormData;
         return savedData ? JSON.parse(savedData) : defaultFormData;
     });
 

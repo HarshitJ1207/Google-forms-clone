@@ -5,24 +5,79 @@ import Grid from "../../Layout/Grid";
 
 import ToggleSlider from "../../UtilityComponents/ToggleSlider";
 import Dropdown from '../../Elements/Dropdown';
-import { useState } from 'react';
+import { useContext } from 'react';
 import MaterialIcon from '../../Elements/MaterialIcon';
-
-export default function FileUpload(){
-    const [allowOnlySpecificFileTypes, setAllowOnlySpecificFileTypes] = useState(false);
-    const [maxCount, setMaxCount] = useState(0);
-    const [maxSize, setMaxSize] = useState(0);
+import Button from '../../Elements/Button';
+import FormDataContext from '../../../Context/FormDataContext';
+export default function FileUpload({tabIndex}){
+    const {formData, setFormData} = useContext(FormDataContext);
+    const allowOnlySpecificFileTypes = formData.formTabs[tabIndex].allowOnlySpecificFileTypes;
+    const maxCount = formData.formTabs[tabIndex].maxCount;
+    const maxSize = formData.formTabs[tabIndex].maxSize;
+    const setAllowOnlySpecificFileTypes = (val) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].allowOnlySpecificFileTypes = val;
+        return next;
+    });
+    const setMaxCount = (val) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].maxCount = val;
+        return next;
+    });
+    const setMaxSize = (val) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].maxSize = val;
+        return next;
+    });
     const props1 = {
-        className: 'linear-scale-tab__dropdown',
-        options:{
-            syncState: [maxCount, setMaxCount]
-        }
+        menu:[
+            {
+                key: 1,
+                label: <p className='linear-scale-tab__dropdown-item'>1</p>,
+                onClick(){setMaxCount(this.key)}
+            },
+            {
+                key: 5,
+                label: <p className='linear-scale-tab__dropdown-item'>5</p>,
+                onClick(){setMaxCount(this.key)}
+            },
+            {
+                key: 10,
+                label: <p className='linear-scale-tab__dropdown-item'>10</p>,
+                onClick(){setMaxCount(this.key)}
+            },
+        ],
+        selectedKeys: [maxCount]
     }
     const props2 = {
-        className: 'linear-scale-tab__dropdown',
-        options:{
-            syncState: [maxSize, setMaxSize]
-        }
+        menu: [
+            {
+                key: '1 MB',
+                label: <p className='linear-scale-tab__dropdown-item'>1 MB</p>,
+                onClick(){setMaxSize(this.key);}
+            },
+            {
+                key: '10 MB',
+                label: <p className='linear-scale-tab__dropdown-item'>10 MB</p>,
+                onClick(){setMaxSize(this.key);}
+            },
+            {
+                key: '100 MB',
+                label: <p className='linear-scale-tab__dropdown-item'>100 MB</p>,
+                onClick(){setMaxSize(this.key);}
+            },
+            {
+                key: '1 GB',
+                label: <p className='linear-scale-tab__dropdown-item'>1 GB</p>,
+                onClick(){setMaxSize(this.key);}
+            },
+            {
+                key: '10 GB',
+                label: <p className='linear-scale-tab__dropdown-item'>10 GB</p>,
+                onClick(){setMaxSize(this.key);}
+            },
+        ],
+        selectedKeys: [maxSize]
     }
     return (
         <div className="tab-content">   
@@ -72,19 +127,23 @@ export default function FileUpload(){
                 <FlexBox justify="space-between">
                     <p>Maximum number of files</p>
                     <Dropdown {...props1}>
-                        <p className='linear-scale-tab__dropdown-item'>1</p>
-                        <p className='linear-scale-tab__dropdown-item'>5</p>
-                        <p className='linear-scale-tab__dropdown-item'>10</p>
+                        <Button view = {Button.VIEW.DEFAULT} className="linear-scale-tab__dropdown">
+                            <FlexBox gap = '0'>
+                                {props1.menu.find(ele => ele.key === maxCount).label}
+                                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
+                            </FlexBox>
+                        </Button>
                     </Dropdown>
                 </FlexBox>
                 <FlexBox justify="space-between">
                     <p>Maximum File size</p>
                     <Dropdown {...props2}> 
-                        <p className='linear-scale-tab__dropdown-item'>1 MB</p>
-                        <p className='linear-scale-tab__dropdown-item'>10 MB</p>
-                        <p className='linear-scale-tab__dropdown-item'>100 MB</p>
-                        <p className='linear-scale-tab__dropdown-item'>1 GB</p>
-                        <p className='linear-scale-tab__dropdown-item'>10 GB</p>
+                        <Button view = {Button.VIEW.DEFAULT} className="linear-scale-tab__dropdown">
+                            <FlexBox gap = '0'>
+                                {props2.menu.find(ele => ele.key === maxSize).label}
+                                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
+                            </FlexBox>
+                        </Button>
                     </Dropdown>
                 </FlexBox>
             </FlexBox>

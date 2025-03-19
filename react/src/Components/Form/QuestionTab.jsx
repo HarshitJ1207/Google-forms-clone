@@ -17,53 +17,51 @@ import CheckboxGrid from './Content/CheckboxGrid';
 import FileUpload from './Content/FileUpload.jsx';
 import FormDataContext from '../../Context/FormDataContext.jsx';
 import SelectedTabContext from '../../Context/SelectedTabContext.jsx';
-import getTabType from '../../Utility/GetTabType.js';
 
 export default function QuestionTab({onClickCapture, tabIndex}){
-    const {selectedTab} = useContext(SelectedTabContext);
-    const { formData } = useContext(FormDataContext);
-
-    const tabType = getTabType(formData.formTabs[tabIndex].type);
+    const {formData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext)
+    const tabType = formData.formTabs[tabIndex].type;
     const getComponent = () => {
         switch(tabType) {
-            case 0:
+            case 'short-answer':
                 return <ShortAnswer tabIndex = {tabIndex}/>;
-            case 1:
+            case 'paragraph':
                 return <Paragraph tabIndex = {tabIndex}/>;
-            case 2:
+            case 'multiple-choice':
                 return <MultipleChoice tabIndex = {tabIndex}/>;
-            case 3:
+            case 'checkbox':
                 return <Checkbox tabIndex = {tabIndex}/>;
-            case 4:
+            case 'dropdown':
                 return <DropdownTab tabIndex = {tabIndex}/>;
-            case 5:
+            case 'file-upload':
                 return <FileUpload tabIndex = {tabIndex}/>;
-            case 6:
+            case 'linear-scale':
                 return <LinearScaleTab tabIndex = {tabIndex}/>;
-            case 7:
+            case 'rating':
                 return <RatingTab tabIndex = {tabIndex}/>;
-            case 8:
+            case 'multiple-choice-grid':
                 return <MultipleChoiceGrid tabIndex = {tabIndex}/>;
-            case 9:
+            case 'checkbox-grid':
                 return <CheckboxGrid tabIndex = {tabIndex}/>;
-            case 10:
+            case 'date':
                 return <DateTab tabIndex = {tabIndex}/>;
-            case 11:
+            case 'time':
                 return <TimeTab tabIndex = {tabIndex}/>;
         }
     }
-    if(selectedTab && selectedTab[0] === tabIndex + 1) return (
+    if(selectedTab && selectedTab[0] === tabIndex) return (
         <div className='form-tab form-tab--selected' onClickCapture = {onClickCapture}>
             <Header tabIndex = {tabIndex} />
             {getComponent()}
-            <Footer />
+            <Footer tabIndex = {tabIndex}/>
         </div>
     );
     else return (
         <div className='form-tab' onClickCapture = {onClickCapture}>
             <Header tabIndex = {tabIndex} />
             {getComponent()}
-            <Footer />
+            <Footer tabIndex = {tabIndex}/>
         </div>
     );
 }

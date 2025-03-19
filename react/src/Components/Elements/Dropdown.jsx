@@ -1,39 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import './Dropdown.css';
-import Button from './Button';
-import MaterialIcon from './MaterialIcon';
 
+
+//menu[i] : {key: '', label: '', onClick, division: }
 export default function Dropdown({
-    children = [],
-    className = '',
-    options = {},
-    node = null,
-    stateManagement = 'display',
-    align = 'left',
+    children,
+    menu = [],
+    placement = 'left',
+    selectedKeys = [],
+    trigger = []
 }) {
-    const {
-        placeholder = 'Choose an option',
-        syncState = null,
-        divisions = [] 
-    } = options;
-    
-    const isControlled = syncState !== null;
-
-    // Uncontrolled state (Only used when syncState is not provided)
-    const [internalSelectedIndex, setInternalSelectedIndex] = useState(-1);
-    const selectedIndex = isControlled ? syncState[0] : internalSelectedIndex;
-    const setSelectedIndex = isControlled ? syncState[1] : setInternalSelectedIndex;
-
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
-    
-    // Ensure selectedIndex stays within valid range when children change
-    useEffect(() => {
-        if (stateManagement !== 'none') {
-            if(selectedIndex < 0 || selectedIndex >= children.length) setSelectedIndex(Math.min(Math.max(0, selectedIndex), children.length - 1));
-        }
-    }, [syncState, children.length]);
-
     // Close dropdown when clicking outside
     useEffect(() => {
         function handleClickOutside(event) {
@@ -45,61 +23,53 @@ export default function Dropdown({
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    let trigger;
-    if (node) {
-        trigger = node;
-    } else if (stateManagement === 'display') {
-        trigger = (
-            <Button className={`trigger-button ${className}`.trim()}>
-                {selectedIndex >= 0 ? children[selectedIndex] : placeholder}
-                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
-            </Button>
-        );
-    } else {
-        trigger = (
-            <Button className={`trigger-button ${className}`.trim()}>
-                {placeholder}
-                <MaterialIcon name = 'arrow_drop_down' className='dropdown-arrow'/>
-            </Button>
-        );
-    }
+    useEffect(() => {
+        if (!trigger.includes('hover')) return;
 
-    const getOptionProps = (ix) => ({
-        onClick: () => {
-            if (stateManagement !== 'none') setSelectedIndex(ix);
-            setOpen(false);
-        },
-        className: selectedIndex === ix ? 'selectOption selectOption--selected' : 'selectOption',
-    });
+        const handleMouseEnter = () => setOpen(true);
+        const handleMouseLeave = () => setOpen(false);
 
+        if (dropdownRef.current) {
+            dropdownRef.current.addEventListener('mouseenter', handleMouseEnter);
+            dropdownRef.current.addEventListener('mouseleave', handleMouseLeave);
+        }
+
+        return () => {
+            if (dropdownRef.current) {
+                dropdownRef.current.removeEventListener('mouseenter', handleMouseEnter);
+                dropdownRef.current.removeEventListener('mouseleave', handleMouseLeave);
+            }
+        };
+    }, [trigger]);
     return (
         <div className={`dropdown`} ref={dropdownRef}>
             <div onClick={() => setOpen(!open)} className="trigger">
-                {trigger}
+                {children}
             </div>
             {open && (
-                <div className={`dropdown-menu dropdown-menu--${align}`}>
-                    {children.map((item, ix) => (
-                        <div key={ix}>
-                            {divisions.includes(ix) && <hr className="dropdown-divider"/>}
-                            <div {...getOptionProps(ix)}>
-                                {item}
+                <div className={`dropdown-menu dropdown-menu--${placement}`}>
+                    {
+                        menu.map((item, ix) => (
+                            <div key={ix}>
+                                {item.divider && <hr className='dropdown-divider'/>}
+                                <div className={selectedKeys.includes(item.key) ? 'selectOption selectOption--selected' : 'selectOption'} 
+                                    onClick={() => {
+                                        if (item.onClick) item.onClick();
+                                        setOpen(false);
+                                    }}
+                                >
+                                    {item.label}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    }
                 </div>
             )}
         </div>
     );
 }
 
-Dropdown.STATE = {
-    DISPLAY: 'display',
-    MANAGE: 'manage',
-    NONE: 'none'
-}
-
-Dropdown.ALIGN = {
+Dropdown.PLACEMENT = {
     LEFT: 'left',
     RIGHT: 'right'
 }

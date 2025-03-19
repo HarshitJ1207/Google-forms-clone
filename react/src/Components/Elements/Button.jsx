@@ -13,6 +13,7 @@ export default function Button ({children, className = '', onClick, options = {v
 const VIEW = {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
+    DEFAULT: 'default'
 }
 
 Button.VIEW = VIEW;

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Grid.css";
 
 export default function Grid({
     columns = "1fr 1fr",
@@ -12,18 +11,18 @@ export default function Grid({
     children,
     onClick = () => {}
 }) {
-    const localClassName = `
-        grid 
-        grid-columns-${columns} 
-        grid-rows-${rows} 
-        grid-gap-${gap} 
-        grid-justify-${justify} 
-        grid-align-${align} 
-        ${className}
-    `.trim();
+    const combinedStyle = {
+        display: "grid",
+        gridTemplateColumns: columns,
+        gridTemplateRows: rows,
+        gap: gap,
+        justifyContent: justify,
+        alignContent: align,
+        ...style,
+    };
 
     return (
-        <div className={localClassName} style={style} onClick={onClick}>
+        <div className={`grid ${className}`} style={combinedStyle} onClick={onClick}>
             {children}
         </div>
     );

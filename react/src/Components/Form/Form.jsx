@@ -37,7 +37,7 @@ export default function Form (){
     }
     function getFormTabs(){
         const tabs = formData.formTabs;
-        return tabs.map((_, index) => <QuestionTab key = {index} tabIndex = {index} onClickCapture={(e) => handleDivClick(e,index + 1)} />);
+        return tabs.map((_, index) => <QuestionTab key = {index} tabIndex = {index} onClickCapture={(e) => handleDivClick(e,index)} />);
     }
 
     const addNewTab = () => {
@@ -50,7 +50,7 @@ export default function Form (){
 
     return (
         <FlexBox {...flexboxProps}>
-            <TitleTab onClickCapture = {(e) => handleDivClick(e,0)}/>
+            <TitleTab onClickCapture = {(e) => handleDivClick(e,-1)}/>
             {
                 getFormTabs()
             }
