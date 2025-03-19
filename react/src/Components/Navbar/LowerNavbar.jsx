@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '../Elements/Button';
-import './lowerNavbar.css'
+import './LowerNavbar.css'
 import FlexBox from '../Layout/FlexBox';
 export default function LowerNavbar(){
     const [selected, setSelected] =  useState(0);

@@ -1,13 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import FlexBox from '../../Layout/FlexBox';
 import MaterialIcon  from '../../Elements/MaterialIcon';
 import Input from '../../Elements/Input';
 import './MultipleChoiceGrid.css';
 import './MultipleChoice.css';
-export default function MultipleChoiceGrid() {
-    const [rows, setRows] = useState(['Row 1']);
-    const [columns, setColumns] = useState(['Column 1']);
+import FormDataContext from '../../../Context/FormDataContext';
+export default function MultipleChoiceGrid({tabIndex}) {
+    const {formData, setFormData} = useContext(FormDataContext);
+    const rows = formData.formTabs[tabIndex].rows;
+    const columns = formData.formTabs[tabIndex].columns;
 
+    const setRows = (f) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].rows = f(next.formTabs[tabIndex].rows);
+        return next;
+    });
+    const setColumns = (f) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].columns = f(next.formTabs[tabIndex].columns);
+        return next;
+    });
 
     const renderOption = (option, index, type) => {
         const options = type === 'rows' ? rows: columns;

@@ -1,19 +1,16 @@
-import './App.css'
-import Navbar from './Components/Navbar/Navbar';
-import Form from './Components/Form/Form';
-import { FormDataProvider } from './Context/FormDataContext';
-import {SelectedTabProvider} from './Context/SelectedTabContext'
-// import TestComponent from './Components/TestComponents'
-
-export default function App(){    
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PublicPage from "./Components/Form/PublicPage";
+import EditorPage from "./Components/Form/EditorPage";
+import './App.css';
+function App() {
     return (
-        <FormDataProvider>
-            <Navbar/>
-            <SelectedTabProvider>
-                <Form /> 
-            </SelectedTabProvider>
-        </FormDataProvider>
-        // <TestComponent />   
+        <Router>
+            <Routes>
+                <Route path="/" element={<EditorPage />} />
+                <Route path="/public" element={<PublicPage />} />
+            </Routes>
+        </Router>
     );
 }
-
+export default App;

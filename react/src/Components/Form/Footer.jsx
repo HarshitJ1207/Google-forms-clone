@@ -4,10 +4,12 @@ import MaterialIcon from "../Elements/MaterialIcon";
 import { useContext } from 'react';
 import FlexBox from '../Layout/FlexBox';
 import FormDataContext from '../../Context/FormDataContext';
+import SelectedTabContext from '../../Context/SelectedTabContext';
 
 export default function Footer({tabIndex}) {
     // const [toggleState, setToggleState] = useState(false);
     const {formData, setFormData} = useContext(FormDataContext);
+    const {setSelectedTab} = useContext(SelectedTabContext);
     const toggleState = formData.formTabs[tabIndex].required;
     const setToggleState = (val) => setFormData(prev => {
         const next = structuredClone(prev);

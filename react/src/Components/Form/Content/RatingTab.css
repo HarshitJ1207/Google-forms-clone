@@ -49,3 +49,7 @@
 .linear-scale-tab__label-span{
     min-width: 2rem;
 }
+
+.linear-scale-tab__label-span--empty{
+    color: var(--border-gray);
+}

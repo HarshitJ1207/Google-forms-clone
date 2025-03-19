@@ -10,10 +10,6 @@ import MaterialIcon from '../../Elements/MaterialIcon';
 
 
 export default function LinearScaleTab({tabIndex}){
-    // const [minValue, setMinValue] = useState(0);
-    // const [maxValue, setMaxValue]this.key= useState(8);
-    // const [minValueLabel, setMinValueLabel] = useState('');
-    // const [maxValueLabel, setMaxValueLthis.keybel] = useState('');
     const {formData, setFormData} = useContext(FormDataContext);
     const minValue = formData.formTabs[tabIndex].minValue;
     const maxValue = formData.formTabs[tabIndex].maxValue;
