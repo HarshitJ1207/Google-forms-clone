@@ -1,3 +1,7 @@
+.visiblity-hidden{
+    visibility: hidden;
+}
+
 .option-container__option-bar{
     width: 100%;
     font-size: 0.9rem;

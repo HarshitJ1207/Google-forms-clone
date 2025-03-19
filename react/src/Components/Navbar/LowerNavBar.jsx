@@ -6,12 +6,7 @@ export default function LowerNavbar(){
     const [selected, setSelected] =  useState(0);
     const getButtonProps = (ix) => {
         return {
-            options: {
-                variant: 'secondary',
-            },
-            handlers: {
-                onClick: () => setSelected(ix)
-            },
+            onClick: () => setSelected(ix),
             className: ix === selected ? 'navbar-lower__button navbar-lower__button--selected' : 'navbar-lower__button'
         }
     }

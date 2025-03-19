@@ -6,7 +6,7 @@ export default function DateTab(){
     const inputProps = {
         options: {
             readOnly: true,
-            variant: 'borderless'
+            view: Input.VIEW.BORDERLESS
         },
         attributes: {
             value: 'Month, day, year'

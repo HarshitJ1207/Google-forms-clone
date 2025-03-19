@@ -1,5 +1,5 @@
 import './RatingTab.css';
-import Select from "../../Elements/Select";
+import Dropdown from "../../Elements/Dropdown";
 import FlexBox from "../../Layout/FlexBox";
 import Input from '../../Elements/Input';
 import { useState } from 'react';
@@ -29,9 +29,7 @@ export default function LinearScaleTab(){
             value: startLabelVal
         },
         className: 'linear-scale-tab__label-bar',
-        handlers: {
-            onChange: (e) => setStartLabelVal(e.target.value)
-        }
+        onChange: (e) => setStartLabelVal(e.target.value)
     }
 
     const inputProps2 = {
@@ -40,18 +38,16 @@ export default function LinearScaleTab(){
             value: endLabelVal
         },
         className: 'linear-scale-tab__label-bar',
-        handlers: {
-            onChange: (e) => setEndLabelVal(e.target.value)
-        }
+        onChange: (e) => setEndLabelVal(e.target.value)
     }
     return (
         <div className='tab-content'>
             <FlexBox align="stretch">
-                <Select {...props1}>
+                <Dropdown {...props1}>
                     <p className='linear-scale-tab__dropdown-item'>0</p>
                     <p className='linear-scale-tab__dropdown-item'>1</p>
-                </Select>
-                <Select {...props2}>
+                </Dropdown>
+                <Dropdown {...props2}>
                     <p className='linear-scale-tab__dropdown-item'>2</p>
                     <p className='linear-scale-tab__dropdown-item'>3</p>
                     <p className='linear-scale-tab__dropdown-item'>4</p>
@@ -61,15 +57,15 @@ export default function LinearScaleTab(){
                     <p className='linear-scale-tab__dropdown-item'>8</p>
                     <p className='linear-scale-tab__dropdown-item'>9</p>
                     <p className='linear-scale-tab__dropdown-item'>10</p>
-                </Select>
+                </Dropdown>
             </FlexBox>
-            <FlexBox direction='column' gap='2rem' align='start' style={{marginTop: '1rem'}}>
+            <FlexBox direction='column' gap='2rem' align='start' className='linear-scale-tab__section-two'>
                 <FlexBox>
-                    <span className='linear-scale-tab__label-span' style={startLabelVal === '' ? { color: 'gray' } : null}>{startValue}</span>
+                    <span className={startLabelVal === '' ? 'linear-scale-tab__label-span--empty' : 'linear-scale-tab__label-span'}>{startValue}</span>
                     <Input {...inputProps1}/>
                 </FlexBox>
                 <FlexBox>
-                    <span className='linear-scale-tab__label-span' style={endLabelVal === '' ? {color: 'gray'} : null}>{endValue + 2}</span>
+                    <span className={startLabelVal === '' ? 'linear-scale-tab__label-span--empty' : 'linear-scale-tab__label-span'}>{endValue + 2}</span>
                     <Input {...inputProps2}/>
                 </FlexBox>
             </FlexBox>

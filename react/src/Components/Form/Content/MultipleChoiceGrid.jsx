@@ -16,26 +16,24 @@ export default function MultipleChoiceGrid() {
             attributes: {
                 value: option
             },
-            handlers:{ 
-                onChange: (e) => {
-                    if(type === 'rows'){
-                        setRows((prevOptions) => {
-                            const newOptions = [...prevOptions];
-                            newOptions[index] = e.target.value;
-                            return newOptions;
-                        });
-                    }
-                    else {
-                        setColumns((prevOptions) => {
-                            const newOptions = [...prevOptions];
-                            newOptions[index] = e.target.value;
-                            return newOptions;
-                        });
-                    }
+            onChange: (e) => {
+                if(type === 'rows'){
+                    setRows((prevOptions) => {
+                        const newOptions = [...prevOptions];
+                        newOptions[index] = e.target.value;
+                        return newOptions;
+                    });
+                }
+                else {
+                    setColumns((prevOptions) => {
+                        const newOptions = [...prevOptions];
+                        newOptions[index] = e.target.value;
+                        return newOptions;
+                    });
                 }
             },
             options: {
-                variant: 'borderless'
+                view: Input.VIEW.BORDERLESS
             }
         }
         return (
@@ -45,7 +43,7 @@ export default function MultipleChoiceGrid() {
                     <MaterialIcon name = 'radio_button_unchecked' />
                 }
                 <Input {...inputProps}/>
-                <MaterialIcon className = 'option-container__image-icon' style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} handlers = {{onClick: () => deleteOption(index, type)}} name = 'close'/>
+                <MaterialIcon className={options.length === 1 ? 'visiblity-hidden': ''} onClick = {() => deleteOption(index, type)} name = 'close'/>
             </FlexBox>
         );
     }

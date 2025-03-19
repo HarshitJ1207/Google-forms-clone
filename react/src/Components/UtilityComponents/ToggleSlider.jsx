@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 import "./ToggleSlider.css";
 
-export default function ToggleSlider({ size = "medium", handlers = {}, toggleClassName = '', sliderClassName = '', state = false}) {
+export default function ToggleSlider({ size = "medium", onClick = () => {}, toggleClassName = '', sliderClassName = '', state = false}) {
     const [isActive, setIsActive] = useState(false);
 
     const handleClick = () => {
         setIsActive((prev) => !prev);
+        onClick();
     };
 
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function ToggleSlider({ size = "medium", handlers = {}, toggleCla
         <>
             <div
                 className={`toggle toggle-${size} ${isActive ? "toggle--active" : ""} ${toggleClassName}`}
-                onClick={handleClick} {...handlers}
+                onClick={handleClick}
             >
                 <div className={`slider slider-${size} ${isActive ? "slider--active" : ""} ${sliderClassName}`}></div>
             </div>

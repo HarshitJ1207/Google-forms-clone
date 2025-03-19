@@ -6,7 +6,7 @@ export default function TimeTab(){
     const inputProps = {
         options: {
             readOnly: true,
-            variant: 'borderless'
+            view: Input.VIEW.BORDERLESS
         },
         attributes: {
             value: 'Time'

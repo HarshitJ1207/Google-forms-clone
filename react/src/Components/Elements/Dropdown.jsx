@@ -1,21 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
-import './Select.css';
+import './Dropdown.css';
 import Button from './Button';
 import MaterialIcon from './MaterialIcon';
 
-export default function Select({
+export default function Dropdown({
     children = [],
-    handlers = {},
     className = '',
-    style = {},
     options = {},
     node = null,
+    stateManagement = 'display',
+    align = 'left',
 }) {
     const {
-        stateManagement = 'display', // display || manage || none
         placeholder = 'Choose an option',
         syncState = null,
-        align = 'left',
         divisions = [] 
     } = options;
     
@@ -32,7 +30,7 @@ export default function Select({
     // Ensure selectedIndex stays within valid range when children change
     useEffect(() => {
         if (stateManagement !== 'none') {
-            setSelectedIndex((prev) => Math.min(Math.max(0, prev), children.length - 1));
+            if(selectedIndex < 0 || selectedIndex >= children.length) setSelectedIndex(Math.min(Math.max(0, selectedIndex), children.length - 1));
         }
     }, [syncState, children.length]);
 
@@ -75,15 +73,15 @@ export default function Select({
     });
 
     return (
-        <div className={`dropdown`.trim()} ref={dropdownRef} style={style}>
-            <div onClick={() => setOpen(!open)} {...handlers} className="trigger">
+        <div className={`dropdown`} ref={dropdownRef}>
+            <div onClick={() => setOpen(!open)} className="trigger">
                 {trigger}
             </div>
             {open && (
                 <div className={`dropdown-menu dropdown-menu--${align}`}>
                     {children.map((item, ix) => (
                         <div key={ix}>
-                            {divisions.includes(ix) && <div className="dropdown-divider"></div>}
+                            {divisions.includes(ix) && <hr className="dropdown-divider"/>}
                             <div {...getOptionProps(ix)}>
                                 {item}
                             </div>
@@ -93,4 +91,15 @@ export default function Select({
             )}
         </div>
     );
+}
+
+Dropdown.STATE = {
+    DISPLAY: 'display',
+    MANAGE: 'manage',
+    NONE: 'none'
+}
+
+Dropdown.ALIGN = {
+    LEFT: 'left',
+    RIGHT: 'right'
 }

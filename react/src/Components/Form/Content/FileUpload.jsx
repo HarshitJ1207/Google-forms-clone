@@ -4,7 +4,7 @@ import FlexBox from "../../Layout/FlexBox";
 import Grid from "../../Layout/Grid";
 
 import ToggleSlider from "../../UtilityComponents/ToggleSlider";
-import Select from '../../Elements/Select';
+import Dropdown from '../../Elements/Dropdown';
 import { useState } from 'react';
 import MaterialIcon from '../../Elements/MaterialIcon';
 
@@ -30,7 +30,7 @@ export default function FileUpload(){
                 <div>
                     <FlexBox justify="space-between">
                         <p>Allow only specific file types</p>
-                        <ToggleSlider size='large' state = {allowOnlySpecificFileTypes} handlers={{onClick: () => setAllowOnlySpecificFileTypes(!allowOnlySpecificFileTypes) }}/>
+                        <ToggleSlider size='large' state = {allowOnlySpecificFileTypes} onClick={() => setAllowOnlySpecificFileTypes(!allowOnlySpecificFileTypes)}/>
                     </FlexBox>
                     {allowOnlySpecificFileTypes && 
                         <Grid gap='0.25rem'>
@@ -71,21 +71,21 @@ export default function FileUpload(){
                 </div>
                 <FlexBox justify="space-between">
                     <p>Maximum number of files</p>
-                    <Select {...props1}>
+                    <Dropdown {...props1}>
                         <p className='linear-scale-tab__dropdown-item'>1</p>
                         <p className='linear-scale-tab__dropdown-item'>5</p>
                         <p className='linear-scale-tab__dropdown-item'>10</p>
-                    </Select>
+                    </Dropdown>
                 </FlexBox>
                 <FlexBox justify="space-between">
                     <p>Maximum File size</p>
-                    <Select {...props2}> 
+                    <Dropdown {...props2}> 
                         <p className='linear-scale-tab__dropdown-item'>1 MB</p>
                         <p className='linear-scale-tab__dropdown-item'>10 MB</p>
                         <p className='linear-scale-tab__dropdown-item'>100 MB</p>
                         <p className='linear-scale-tab__dropdown-item'>1 GB</p>
                         <p className='linear-scale-tab__dropdown-item'>10 GB</p>
-                    </Select>
+                    </Dropdown>
                 </FlexBox>
             </FlexBox>
         </div>

@@ -1,16 +1,24 @@
 import './MultipleChoice.css';
-import { useState } from "react";
+import { useContext} from "react";
 import FlexBox from "../../Layout/FlexBox";
 import MaterialIcon from "../../Elements/MaterialIcon";
 import Input from "../../Elements/Input";
-export default function MultipleChoice() {
-    const [options, setOptions] = useState(
-        [
-            'Option 1'
-        ]
-    );
-
-    const [addedOther, setAddedOther] = useState(false);
+import FormDataContext from '../../../Context/FormDataContext';
+export default function MultipleChoice({tabIndex}) {
+    const {formData, setFormData} = useContext(FormDataContext);
+    const options = formData.formTabs[tabIndex].options || [];
+    const setOptions = (f) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].options = f(next.formTabs[tabIndex].options);
+        return next;
+    });
+    
+    const addedOther = formData.formTabs[tabIndex].other;
+    const setAddedOther = (val) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].other = val;
+        return next;
+    });
 
     const addOption = () => {
         setOptions(prevOptions => [...prevOptions, `Option ${prevOptions.length + 1}`])
@@ -30,17 +38,15 @@ export default function MultipleChoice() {
             attributes: {
                 value: option
             },
-            handlers:{ 
-                onChange: (e) => {
-                    setOptions((prevOptions) => {
-                    const newOptions = [...prevOptions];
-                    newOptions[index] = e.target.value;
-                    return newOptions;
-                    });
-                }
+            onChange: (e) => {
+                setOptions((prevOptions) => {
+                const newOptions = [...prevOptions];
+                newOptions[index] = e.target.value;
+                return newOptions;
+                });
             },
             options: {
-                variant: 'borderless'
+                view: Input.VIEW.BORDERLESS
             }
         }
         return (
@@ -48,7 +54,7 @@ export default function MultipleChoice() {
                 <MaterialIcon name = 'radio_button_unchecked' />
                 <Input {...inputProps}/>
                 <MaterialIcon className = 'option-container__image-icon' name = 'image'/>
-                <MaterialIcon className = 'option-container__image-icon' style={{ visibility: (options.length == 1 ? 'hidden' : 'visible') }} handlers = {{onClick: () => deleteOption(index)}} name = 'close'/>
+                <MaterialIcon className={options.length === 1 ? 'visiblity-hidden': ''} onClick = {() => deleteOption(index)} name = 'close'/>
             </FlexBox>
         );
     }
@@ -70,7 +76,7 @@ export default function MultipleChoice() {
                 <FlexBox key={options.length} className="option-container">
                     <MaterialIcon name = 'radio_button_unchecked' />
                     <span className="option-container__other-option">Other...</span>
-                    <MaterialIcon handlers = {{onClick: () => deleteOption(-1)}} name = 'close'/>
+                    <MaterialIcon onClick = {() => deleteOption(-1)} name = 'close'/>
                 </FlexBox>
                 <FlexBox key={options.length+1} className="option-container">
                     <MaterialIcon name = 'radio_button_unchecked' />

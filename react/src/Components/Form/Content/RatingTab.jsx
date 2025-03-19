@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Select from "../../Elements/Select";
+import Dropdown from "../../Elements/Dropdown";
 import './RatingTab.css'
 import FlexBox from "../../Layout/FlexBox";
 
@@ -20,19 +20,19 @@ export default function RatingTab() {
     return (
         <div className='tab-content'>
             <FlexBox align="stretch">
-                <Select {...props1}>
+                <Dropdown {...props1}>
                     <p className="rating-tab__dropdown-item">3</p>
                     <p className="rating-tab__dropdown-item">4</p>
                     <p className="rating-tab__dropdown-item">5</p>
                     <p className="rating-tab__dropdown-item">6</p>
                     <p className="rating-tab__dropdown-item">7</p>
                     <p className="rating-tab__dropdown-item">8</p>
-                </Select>
-                <Select {...props2}>
+                </Dropdown>
+                <Dropdown {...props2}>
                     <span className="material-icons grade-icon rating-tab__dropdown-item">grade</span>
                     <span className="material-icons favorite-icon rating-tab__dropdown-item">favorite</span>
                     <span className="material-icons thumb_up-icon rating-tab__dropdown-item">thumb_up</span>
-                </Select>
+                </Dropdown>
             </FlexBox>
             <FlexBox justify="space-around">
                 {[...Array(count + 3)].map((_, index) => <p key={index}>{index + 1}</p>)}

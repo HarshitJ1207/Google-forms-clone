@@ -1,0 +1,51 @@
+/* Base flexbox container */
+.flexbox {
+    display: flex;
+}
+
+/* Direction classes */
+.flexbox-direction-row {
+    flex-direction: row;
+}
+
+.flexbox-direction-column {
+    flex-direction: column;
+}
+
+
+/* Justify content classes */
+.flexbox-justify-flex-start {
+    justify-content: flex-start;
+}
+.flexbox-justify-flex-end {
+    justify-content: flex-end;
+}
+.flexbox-justify-center {
+    justify-content: center;
+}
+.flexbox-justify-space-between {
+    justify-content: space-between;
+}
+.flexbox-justify-space-around {
+    justify-content: space-around;
+}
+.flexbox-justify-space-evenly {
+    justify-content: space-evenly;
+}
+
+/* Align items classes */
+.flexbox-align-center {
+    align-items: center;
+}
+.flexbox-align-flex-start {
+    align-items: flex-start;
+}
+.flexbox-align-flex-end {
+    align-items: flex-end;
+}
+.flexbox-align-stretch {
+    align-items: stretch;
+}
+.flexbox-align-baseline {
+    align-items: baseline;
+}

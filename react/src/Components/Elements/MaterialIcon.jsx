@@ -1,11 +1,11 @@
 import './MaterialIcon.css';
 
-export default function MaterialIcon({ name = '', className = '', attributes = {}, handlers, options = {}, style = {} }) {
-    const { variant = 'outlined', size = 'medium' } = options;
+export default function MaterialIcon({ name = '', className = '', attributes = {}, options = {}, onClick }) {
+    const { view = 'outlined', size = 'medium' } = options;
 
     let localClassName = '';
 
-    switch (variant) {
+    switch (view) {
         case 'outlined':
             localClassName += 'material-symbols-outlined ';
             break;
@@ -18,5 +18,18 @@ export default function MaterialIcon({ name = '', className = '', attributes = {
 
     localClassName += `icon-${size} ${className}`.trim();
 
-    return <span className={localClassName} {...attributes} {...handlers} style = {style}>{name}</span>;
+    return <span className={localClassName} {...attributes} onClick={onClick}>{name}</span>;
+}
+
+MaterialIcon.VIEW = {
+    OUTLINED: 'outlined',
+    FILLED: 'filled'
+}
+
+MaterialIcon.SIZE = {
+    XL: 'XL',
+    LARGE: 'large',
+    MEDIUM: 'medium',
+    SMALL: 'small',
+    XS: 'xs'
 }

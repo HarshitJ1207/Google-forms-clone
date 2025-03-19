@@ -29,6 +29,10 @@
     border: none;
 }
 
+.linear-scale-tab__section-two{
+    margin-top: 1.5rem;
+}
+
 .linear-scale-tab__label-bar{
     border-bottom: 0.1rem solid var(--border-gray);
     font-size: 0.9rem;

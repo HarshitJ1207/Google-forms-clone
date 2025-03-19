@@ -20,5 +20,6 @@ body{
     margin: 0;
     min-width: 40rem;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
