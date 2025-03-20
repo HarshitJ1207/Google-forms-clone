@@ -13,7 +13,8 @@ class FormDataUtils {
         count: 5,
         maxSize: '10 MB',
         maxCount: 1,
-        allowOnlySpecificFileTypes: false
+        allowOnlySpecificFileTypes: false,
+        allowedFileTypes: [0, 0, 0, 0, 0, 0, 0, 0]
     };
 
     static getDefaultObject(type) {
@@ -34,7 +35,8 @@ class FormDataUtils {
                     ...base,
                     maxSize: this.defaultValues.maxSize,
                     maxCount: this.defaultValues.maxCount,
-                    allowOnlySpecificFileTypes: this.defaultValues.allowOnlySpecificFileTypes
+                    allowOnlySpecificFileTypes: this.defaultValues.allowOnlySpecificFileTypes,
+                    allowedFileTypes: this.defaultValues.allowedFileTypes
                 }
 
             case "multiple-choice":

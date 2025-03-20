@@ -10,6 +10,17 @@ import MaterialIcon from '../../Elements/MaterialIcon';
 import Button from '../../Elements/Button';
 import FormDataContext from '../../../Context/FormDataContext';
 import SelectedTabContext from '../../../Context/SelectedTabContext';   
+
+const fileTypes = [
+    'Document',
+    'Presentation',
+    'Spreadsheet',
+    'Drawing',
+    'PDF',
+    'Image',
+    'Video',
+    'Audio',
+]
 export default function FileUpload({tabIndex}){
     const {formData, setFormData} = useContext(FormDataContext);
     const {selectedTab} = useContext(SelectedTabContext);
@@ -17,6 +28,12 @@ export default function FileUpload({tabIndex}){
     const allowOnlySpecificFileTypes = formData.formTabs[tabIndex].allowOnlySpecificFileTypes;
     const maxCount = formData.formTabs[tabIndex].maxCount;
     const maxSize = formData.formTabs[tabIndex].maxSize;
+    const allowedFileTypes = formData.formTabs[tabIndex].allowedFileTypes;
+    const setAllowedFileTypes = (ix) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].allowedFileTypes[ix] = 1 - next.formTabs[tabIndex].allowedFileTypes[ix];
+        return next;
+    });
     const setAllowOnlySpecificFileTypes = (val) => setFormData(prev => {
         const next = structuredClone(prev);
         next.formTabs[tabIndex].allowOnlySpecificFileTypes = val;
@@ -92,38 +109,19 @@ export default function FileUpload({tabIndex}){
                     </FlexBox>
                     {allowOnlySpecificFileTypes && 
                         <Grid gap='0.25rem' justifyItems={Grid.JUSTIFYITEMS.START}>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Document</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Presentation</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Spreadsheet</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Drawing</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>PDF</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Image</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Video</span>
-                            </FlexBox>
-                            <FlexBox>
-                                <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
-                                <span>Audio</span>
-                            </FlexBox>
+                            {
+                                fileTypes.map((fileType, ix) => {
+                                    return (
+                                        <FlexBox key = {ix}>
+                                            <MaterialIcon name = {`${allowedFileTypes[ix] ? 'check_box' : 'check_box_outline_blank'}`} view={MaterialIcon.VIEW.FILLED} 
+                                                className={`checkbox ${allowedFileTypes[ix] ? 'checkbox--selected' : ''}`.trim()}
+                                                onClick={() => setAllowedFileTypes(ix)}
+                                            />
+                                            <span>{fileType}</span>
+                                        </FlexBox>
+                                    )
+                                })
+                            }                       
                         </Grid>
                     }
                 </div>
@@ -161,10 +159,10 @@ export default function FileUpload({tabIndex}){
                         <span>Add file</span>
                     </FlexBox>
                 </Button>
-                <Button view={Button.VIEW.DEFAULT} className='file-upload-tab__button'>
+                <Button view={Button.VIEW.DEFAULT} className='rating-tab__show-folder-button'>
                     <FlexBox gap='0.25rem'>
-                        <MaterialIcon className = 'rating-tab__show-folder-button' name='add_to_drive' view = {MaterialIcon.VIEW.FILLED} size={MaterialIcon.SIZE.SMALL}/>
-                        <span className = 'rating-tab__show-folder-button'>View Folder</span>
+                        <MaterialIcon name='add_to_drive' view = {MaterialIcon.VIEW.FILLED} size={MaterialIcon.SIZE.SMALL}/>
+                        <span>View Folder</span>
                     </FlexBox>
                 </Button>
             </FlexBox>
@@ -173,3 +171,41 @@ export default function FileUpload({tabIndex}){
 
     );
 }
+
+
+/*
+
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Document</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Presentation</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Spreadsheet</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Drawing</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>PDF</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Image</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Video</span>
+                            </FlexBox>
+                            <FlexBox>
+                                <MaterialIcon name = 'check_box_outline_blank' view={MaterialIcon.VIEW.FILLED} className='checkbox'></MaterialIcon>
+                                <span>Audio</span>
+                            </FlexBox>
+
+*/

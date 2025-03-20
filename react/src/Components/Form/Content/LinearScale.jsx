@@ -167,7 +167,7 @@ export default function LinearScaleTab({tabIndex}){
                     </FlexBox>
                     <FlexBox justify="space-around">
                         {[...Array(maxValue - minValue + 1)].map((_, index) => (
-                            <MaterialIcon name = 'radio_button_unchecked' size={MaterialIcon.SIZE.SMALL}/>
+                            <MaterialIcon name = 'radio_button_unchecked' size={MaterialIcon.SIZE.SMALL} key = {index}/>
                         ))}
                     </FlexBox>
                 </div>
