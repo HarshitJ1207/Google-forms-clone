@@ -91,7 +91,7 @@ export default function FileUpload({tabIndex}){
                         <ToggleSlider size='large' state = {allowOnlySpecificFileTypes} onClick={() => setAllowOnlySpecificFileTypes(!allowOnlySpecificFileTypes)}/>
                     </FlexBox>
                     {allowOnlySpecificFileTypes && 
-                        <Grid gap='0.25rem'>
+                        <Grid gap='0.25rem' justifyItems={Grid.JUSTIFYITEMS.START}>
                             <FlexBox>
                                 <MaterialIcon name = 'check_box_outline_blank' className='checkbox'></MaterialIcon>
                                 <span>Document</span>

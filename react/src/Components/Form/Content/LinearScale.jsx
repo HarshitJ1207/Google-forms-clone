@@ -6,11 +6,13 @@ import { useContext } from 'react';
 import FormDataContext from '../../../Context/FormDataContext';
 import Button from '../../Elements/Button';
 import MaterialIcon from '../../Elements/MaterialIcon';
-
+import SelectedTabContext from '../../../Context/SelectedTabContext';
 
 
 export default function LinearScaleTab({tabIndex}){
     const {formData, setFormData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = selectedTab && selectedTab[0] === tabIndex;
     const minValue = formData.formTabs[tabIndex].minValue;
     const maxValue = formData.formTabs[tabIndex].maxValue;
     const minValueLabel = formData.formTabs[tabIndex].minValueLabel;
@@ -119,7 +121,7 @@ export default function LinearScaleTab({tabIndex}){
         className: 'linear-scale-tab__label-bar',
         onChange: (e) => setMaxValueLabel(e.target.value)
     }
-    return (
+    if(selected) return (
         <div className='tab-content'>
             <FlexBox align="stretch">
                 <Dropdown {...props1}>
@@ -148,6 +150,31 @@ export default function LinearScaleTab({tabIndex}){
                     <span className={maxValueLabel === '' ? 'linear-scale-tab__label-span linear-scale-tab__label-span--empty' : 'linear-scale-tab__label-span'}>{maxValue}</span>
                     <Input {...inputProps2}/>
                 </FlexBox>
+            </FlexBox>
+        </div>
+    );
+    else return(
+        <div className='tab-content'>
+            <FlexBox justify='space-between'>
+                <div className='linear-scale-inactive--label-container'>
+                    <span>{minValueLabel}</span>
+                </div>
+                <div className='linear-scale-inactive--main-container'>
+                    <FlexBox justify="space-around">
+                        {[...Array(maxValue - minValue + 1)].map((_, index) => (
+                            <p key={index}>{minValue + index}</p>
+                        ))}
+                    </FlexBox>
+                    <FlexBox justify="space-around">
+                        {[...Array(maxValue - minValue + 1)].map((_, index) => (
+                            <MaterialIcon name = 'radio_button_unchecked' size={MaterialIcon.SIZE.SMALL}/>
+                        ))}
+                    </FlexBox>
+                </div>
+                <div className='linear-scale-inactive--label-container'>
+                    <span>{maxValueLabel}</span>
+                </div>
+
             </FlexBox>
         </div>
     );

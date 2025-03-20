@@ -57,3 +57,16 @@
 .linear-scale-tab__label-span--empty{
     color: var(--border-gray);
 }
+
+.linear-scale-inactive--label-container{
+    min-width: 5rem;
+    max-width: 10rem;
+    overflow-wrap: break-word;
+}
+.linear-scale-inactive--main-container{
+    flex-basis: 100%;
+}
+.linear-scale-inactive--main-container p{
+    width: 2rem;
+    text-align: center;
+}

@@ -1,12 +1,18 @@
-import { useContext, useState } from 'react';
+import React from 'react';
+import { useContext } from 'react';
 import FlexBox from '../../Layout/FlexBox';
 import MaterialIcon  from '../../Elements/MaterialIcon';
 import Input from '../../Elements/Input';
 import './MultipleChoiceGrid.css';
 import './MultipleChoice.css';
 import FormDataContext from '../../../Context/FormDataContext';
+import SelectedTabContext from '../../../Context/SelectedTabContext';
+import Grid from '../../Layout/Grid';
+
 export default function MultipleChoiceGrid({tabIndex}) {
     const {formData, setFormData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = selectedTab && selectedTab[0] === tabIndex;
     const rows = formData.formTabs[tabIndex].rows;
     const columns = formData.formTabs[tabIndex].columns;
 
@@ -110,7 +116,7 @@ export default function MultipleChoiceGrid({tabIndex}) {
     }
 
 
-    return (
+    if(selected) return (
         <div className='tab-content'>
             <FlexBox align='start'>
                 <FlexBox direction='column' align='stretch' className='multiple-choice-grid-subsection'>
@@ -122,6 +128,37 @@ export default function MultipleChoiceGrid({tabIndex}) {
                     {renderOptions('columns')}
                 </FlexBox>
             </FlexBox>
+        </div>
+    );
+    else return(
+        <div className='tab-content'>
+            <Grid columns={`auto repeat(${columns.length}, 1fr)`} gap='0.5rem'>
+                {/* Empty cell (0,0) */}
+                <div></div>
+                
+                {/* column headers */}
+                {columns.map((col,colIx) => <div key = {`col-${colIx}`}>{col}</div>)}
+
+                {/* row header + Inputs */}
+                {
+                    rows.map((row, rowIx) => {
+                        return (
+                            <React.Fragment key={`row-fragment-${rowIx}`}>
+                                {/* row label */}
+                                <div key = {`row-${rowIx}`}>{row}</div>
+
+                                {/* Inputs */}
+                                {columns.map((_,ix) => (
+                                    <div key = {`${rowIx}-${ix}`}>
+                                        <MaterialIcon name = 'radio_button_unchecked' size={MaterialIcon.SIZE.SMALL}/>
+                                    </div>
+                                ))}
+
+                            </React.Fragment>
+                        );
+                    })
+                }
+            </Grid>
         </div>
     );
 }

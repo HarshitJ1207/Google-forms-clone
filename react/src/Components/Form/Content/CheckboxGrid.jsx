@@ -1,13 +1,32 @@
-import { useState } from 'react';
+import React from 'react';
+import { useContext } from 'react';
 import FlexBox from '../../Layout/FlexBox';
 import MaterialIcon  from '../../Elements/MaterialIcon';
 import Input from '../../Elements/Input';
 import './MultipleChoiceGrid.css';
 import './MultipleChoice.css';
-export default function CheckboxGrid() {
-    const [rows, setRows] = useState(['Row 1']);
-    const [columns, setColumns] = useState(['Column 1']);
-    
+import FormDataContext from '../../../Context/FormDataContext';
+import SelectedTabContext from '../../../Context/SelectedTabContext';
+import Grid from '../../Layout/Grid';
+
+export default function CheckboxGrid({tabIndex}) {
+    const {formData, setFormData} = useContext(FormDataContext);
+    const {selectedTab} = useContext(SelectedTabContext);
+    const selected = selectedTab && selectedTab[0] === tabIndex;
+    const rows = formData.formTabs[tabIndex].rows;
+    const columns = formData.formTabs[tabIndex].columns;
+
+    const setRows = (f) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].rows = f(next.formTabs[tabIndex].rows);
+        return next;
+    });
+    const setColumns = (f) => setFormData(prev => {
+        const next = structuredClone(prev);
+        next.formTabs[tabIndex].columns = f(next.formTabs[tabIndex].columns);
+        return next;
+    });
+
     const renderOption = (option, index, type) => {
         const options = type === 'rows' ? rows: columns;
         const inputProps = {
@@ -96,7 +115,8 @@ export default function CheckboxGrid() {
         );
     }
 
-    return (
+
+    if(selected) return (
         <div className='tab-content'>
             <FlexBox align='start'>
                 <FlexBox direction='column' align='stretch' className='multiple-choice-grid-subsection'>
@@ -108,6 +128,37 @@ export default function CheckboxGrid() {
                     {renderOptions('columns')}
                 </FlexBox>
             </FlexBox>
+        </div>
+    );
+    else return(
+        <div className='tab-content'>
+            <Grid columns={`auto repeat(${columns.length}, 1fr)`} gap='0.5rem'>
+                {/* Empty cell (0,0) */}
+                <div></div>
+                
+                {/* column headers */}
+                {columns.map((col,colIx) => <div key = {`col-${colIx}`}>{col}</div>)}
+
+                {/* row header + Inputs */}
+                {
+                    rows.map((row, rowIx) => {
+                        return (
+                            <React.Fragment key={`row-fragment-${rowIx}`}>
+                                {/* row label */}
+                                <div key = {`row-${rowIx}`}>{row}</div>
+
+                                {/* Inputs */}
+                                {columns.map((_,ix) => (
+                                    <div key = {`${rowIx}-${ix}`}>
+                                        <MaterialIcon name = 'check_box_outline_blank' size={MaterialIcon.SIZE.SMALL}/>
+                                    </div>
+                                ))}
+
+                            </React.Fragment>
+                        );
+                    })
+                }
+            </Grid>
         </div>
     );
 }

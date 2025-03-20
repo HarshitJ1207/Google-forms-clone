@@ -4,8 +4,10 @@ export default function Grid({
     columns = "1fr 1fr",
     rows = "auto",
     gap = "1rem",
-    justify = "start",
-    align = "start",
+    justifyContent = "start",
+    alignContent = "start",
+    justifyItems = "center",
+    alignItems = "center",
     className = "",
     style = {},
     children,
@@ -16,8 +18,10 @@ export default function Grid({
         gridTemplateColumns: columns,
         gridTemplateRows: rows,
         gap: gap,
-        justifyContent: justify,
-        alignContent: align,
+        justifyContent: justifyContent,
+        alignContent: alignContent,
+        justifyItems: justifyItems,
+        alignItems: alignItems,
         ...style,
     };
 
@@ -28,19 +32,32 @@ export default function Grid({
     );
 }
 
-Grid.JUSTIFY = {
+Grid.JUSTIFYCONTENT = {
     START: "start",
     END: "end",
     CENTER: "center",
     SPACE_BETWEEN: "space-between",
     SPACE_AROUND: "space-around",
     SPACE_EVENLY: "space-evenly",
-    STRETCH: "stretch"
 };
 
-Grid.ALIGN = {
+Grid.JUSTIFYITEMS = {
     START: "start",
     END: "end",
     CENTER: "center",
-    STRETCH: "stretch"
+}
+
+Grid.ALIGNCONTENT = {
+    START: "start",
+    END: "end",
+    CENTER: "center",
+    SPACE_BETWEEN: "space-between",
+    SPACE_AROUND: "space-around",
+    SPACE_EVENLY: "space-evenly",
 };
+
+Grid.ALIGNITEMS = {
+    START: "start",
+    END: "end",
+    CENTER: "center",
+}
