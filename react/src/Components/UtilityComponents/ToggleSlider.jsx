@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import "./ToggleSlider.css";
 
 export default function ToggleSlider({ size = "medium", onClick = () => {}, toggleClassName = '', sliderClassName = '', state = false}) {
-    const [isActive, setIsActive] = useState(state);
+    const [isActive, setIsActive] = useState(false);
 
     const handleClick = () => {
         setIsActive((prev) => !prev);

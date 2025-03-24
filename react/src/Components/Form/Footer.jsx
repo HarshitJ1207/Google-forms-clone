@@ -40,7 +40,7 @@ export default function Footer({tabIndex}) {
             <MaterialIcon name = 'delete' className='icon-button' onClick={deleteTab} />
             <hr className = 'tab-footer__divider'/>
             <label className="tab-footer__required-label" onClick={() => setToggleState(!toggleState)}>Required</label>
-            <ToggleSlider size='large' state = {toggleState} onClick={() => setToggleState(!toggleState)}/>
+            <ToggleSlider size='large' state = {toggleState}/>
         </FlexBox>
     );
 
