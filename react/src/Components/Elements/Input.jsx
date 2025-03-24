@@ -28,3 +28,47 @@ Input.VIEW = {
     FILLED: 'filled',
     BORDERLESS: 'borderless',
 }
+
+
+// 1. Go into deep 
+// 2. more than 2 approach - solving common isse - ||  impact || contenxt VS state 
+
+
+
+
+
+
+// Header  -> 
+
+// NavBar(shoeLeft, showlowerSection)  - <div>
+//              NavBarLeftSection  NavBarRightSection (listOfIcons) --> 
+//              <Lower></Lower>
+
+
+
+
+// Body -
+// FormBuilder --> {
+//     states {
+//         sections: [{ viewType}]
+//     }
+
+//     handleAdd = () =>{ sections.push([{}])}
+ 
+//     if(section) renderEmptySection() <ToolBaar handleAdd()/>
+
+
+//     renderSection = () => {
+// onAnswerTypeSelect({ sectionViewType: })
+//         const component = SectionFactory(sectionViewType);
+//         <component {...props} />
+
+//     }
+//     map(sections, renderSection)
+
+
+
+
+
+// }
+// Footer
