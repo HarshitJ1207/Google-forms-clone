@@ -45,6 +45,7 @@ function UpperLeftNavbar(){
     );
 }
 
+
 function UpperRightNavbar() {
     const materialIconOutlinedProps = {
         className: 'icon-button'
@@ -54,10 +55,12 @@ function UpperRightNavbar() {
             view: Button.VIEW.PRIMARY
         },
     }
+
+
     const props = {
         menu: [
             {   key: 0,
-                label: <FlexBox className='option'><span className="material-symbols-outlined">content_copy</span><span>Make a copy</span></FlexBox>
+                label: <FlexBox className='option'><span className="material-symbols-outlined">content_copy</span><span></span></FlexBox>
             },
             {
                 key: 1,

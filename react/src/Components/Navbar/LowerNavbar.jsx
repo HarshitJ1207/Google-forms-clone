@@ -12,7 +12,6 @@ export default function LowerNavbar(){
     }
     return (
         <FlexBox gap = '0' justify='center'>
-
             <Button {...getButtonProps(0)}> Questions </Button>
             <Button {...getButtonProps(1)}> Responses </Button>
             <Button {...getButtonProps(2)}> Settings </Button>
