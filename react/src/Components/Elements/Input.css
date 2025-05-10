@@ -1,0 +1,46 @@
+.input{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.input-xs {
+    font-size: 0.6rem;
+}
+.input-small {
+    font-size: 0.875rem;
+}
+
+.input-medium {
+    font-size: 1rem;
+}
+
+.input-large {
+    font-size: 1.25rem;
+}
+
+.input-xl {
+    font-size: 2rem;
+}
+
+.input-outlined {
+    border: 0.125rem solid var(--primary-color);
+    background: transparent;
+    border-radius: 0.25rem;
+    outline: none;
+}
+
+.input-filled {
+    background-color: var(--border-gray);
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.input-underlined {
+    border: none;
+    border-bottom: 0.125rem solid var(--primary-color);
+    background: transparent;
+    outline: none;
+}
